@@ -12,7 +12,9 @@ const config: Config = {
       center: true,
       padding: "2rem",
       screens: {
+        "3xl": "1516px",
         "2xl": "1400px",
+        "xl": "1024px",
       },
     },
     extend: {
@@ -35,6 +37,7 @@ const config: Config = {
         "dark-3": "#232323",
         "light-1": "#FFFFFF",
         "light-2": "#E2E9E0",
+        "light-br" :'#484848',
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

@@ -139,7 +139,7 @@ const Footer = () => {
           </ul>
         </div>
       </section>
-      <div className="border-t-2 border-[#484848] w-[80%] mx-auto mt-24 lg:mt-36"></div>
+      <div className="border-t-2 border-[#484848] w-[90%] mx-auto mt-24 lg:mt-36"></div>
       {/* Bottom Section */}
       <section className="container mx-auto md:flex justify-between items-center mt-6 lg:mt-12 px-6 md:px-12 lg:px-16">
         {/* Copyright */}

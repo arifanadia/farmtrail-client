@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -22,13 +22,29 @@ const navLinks = [
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [bgColor, setBgColor] = useState("bg-transparent");
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > 0) {
+      setBgColor("bg-black");
+    } else {
+      setBgColor("bg-transparent");
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="container mx-auto flex justify-between items-center py-4 px-4 md:px-0 fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <nav className={`container mx-auto flex justify-between items-center py-4 px-4 md:px-0 fixed top-0 left-0 right-0 z-50 ${bgColor} transition-all duration-300`}>
       <Link href="/" aria-label="Home">
         <Image
           src="/png/Farmtrail-logo-light.png"
