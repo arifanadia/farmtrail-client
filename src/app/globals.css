@@ -11,7 +11,7 @@
   }
 
   body {
-    @apply bg-dark-1 text-white min-h-screen font-openSans;
+    @apply bg-[#000000] text-white min-h-screen font-openSans;
   }
   .h1{
     @apply font-dmSans
@@ -19,10 +19,16 @@
 }
 
 @layer utilities {
-  .container-use {
+  .container {
     @apply relative flex-1 overflow-y-auto px-[5%];
   }
-  
+  .shad-input-label {
+    @apply text-14-medium text-dark-700 !important;
+  }
+
+  .shad-input {
+    @apply bg-dark-1 placeholder:text-dark-2 border-light-br h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+  }
   /* TYPOGRAPHY */
   .h2-bold {
     @apply text-[44px] font-bold leading-[140%] tracking-tighter;
@@ -35,7 +41,9 @@
   .h2-medium {
     @apply text-[28px] font-medium leading-[140%] tracking-tighter;
   }
-  
+  .text-28 {
+    @apply text-[28px] font-bold leading-[140%] tracking-tighter;
+  }
   .h3-bold {
     @apply text-[24px] font-bold leading-[140%] tracking-tighter;
   }
@@ -43,6 +51,9 @@
     @apply text-[22px] font-medium leading-[140%] tracking-tighter;
   }
   
+  .base-bold {
+    @apply text-[16px] font-bold leading-[140%] tracking-tighter;
+  }
   .base-semibold {
     @apply text-[16px] font-semibold leading-[140%] tracking-tighter;
   }
@@ -154,4 +165,12 @@
   .profile-tab {
     @apply flex-center gap-3 py-4 w-48 bg-dark-2  transition flex-1 xl:flex-initial;
   }
+  .star-icon {
+    @apply mr-4;
+  }
+  
+  .star-icon:last-child {
+    @apply mr-0;
+  }
+  
 }

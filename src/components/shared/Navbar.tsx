@@ -12,15 +12,17 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "../ui/button";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation"; // Import useRouter for route matching
 
 const navLinks = [
   { key: "home", label: "Home", href: "/" },
   { key: "about", label: "About", href: "/about" },
-  { key: "product", label: "Product", href: "/product" },
-  { key: "services", label: "Services", href: "/services" },
+  { key: "products", label: "Products", href: "/Products" },
+  { key: "blogs", label: "Blogs", href: "/blogs" },
 ];
 
 const Navbar = () => {
+  const router = usePathname(); // Get the router instance
   const [menuOpen, setMenuOpen] = useState(false);
   const [bgColor, setBgColor] = useState("bg-transparent");
 
@@ -44,7 +46,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`container mx-auto flex justify-between items-center py-4 px-4 md:px-0 fixed top-0 left-0 right-0 z-50 ${bgColor} transition-all duration-300`}>
+    <nav className={`flex justify-between gap-4 items-center fixed z-50 text-white py-4 px-8 w-full ${bgColor} transition-all duration-300`}>
       <Link href="/" aria-label="Home">
         <Image
           src="/png/Farmtrail-logo-light.png"
@@ -67,54 +69,63 @@ const Navbar = () => {
 
       {/* Main menu - hidden on small screens */}
       <NavigationMenu className="hidden md:flex space-x-4 menu-medium">
-        <NavigationMenuList className="flex space-x-4">
+        <NavigationMenuList className="flex space-x-12">
           {navLinks.map((link) => (
             <NavigationMenuItem key={link.key}>
-              <NavigationMenuTrigger>
-                <Link href={link.href} className="text-white hover:underline">
-                  {link.label}
-                </Link>
-              </NavigationMenuTrigger>
-
-              {/* Dropdown for Services */}
-              {link.key === "services" && (
-                <NavigationMenuContent>
-                  <ul className="flex flex-col p-2 bg-black text-white rounded">
-                    <li>
-                      <NavigationMenuLink>
-                        <Link
-                          href="/services/service1"
-                          className="block px-4 py-2 hover:bg-gray-700"
-                        >
-                          Service 1
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink>
-                        <Link
-                          href="/services/service2"
-                          className="block px-4 py-2 hover:bg-gray-700"
-                        >
-                          Service 2
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                    <li>
-                      <NavigationMenuLink>
-                        <Link
-                          href="/services/service3"
-                          className="block px-4 py-2 hover:bg-gray-700"
-                        >
-                          Service 3
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  </ul>
-                </NavigationMenuContent>
-              )}
+              <Link
+                href={link.href}
+                className={`${
+                  router === link.href
+                    ? "text-light_green"
+                    : "text-white"
+                } hover:underline`}
+              >
+                {link.label}
+              </Link>
             </NavigationMenuItem>
           ))}
+          {/* Services Trigger */}
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>
+              <span className="text-white hover:underline">Services</span>
+            </NavigationMenuTrigger>
+
+            {/* Dropdown for Services */}
+            <NavigationMenuContent>
+              <ul className="flex flex-col p-2 bg-black text-white rounded">
+                <li>
+                  <NavigationMenuLink>
+                    <Link
+                      href="/services/service1"
+                      className="block px-4 py-2 hover:bg-gray-700"
+                    >
+                      Service 1
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+                <li>
+                  <NavigationMenuLink>
+                    <Link
+                      href="/services/service2"
+                      className="block px-4 py-2 hover:bg-gray-700"
+                    >
+                      Service 2
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+                <li>
+                  <NavigationMenuLink>
+                    <Link
+                      href="/services/service3"
+                      className="block px-4 py-2 hover:bg-gray-700"
+                    >
+                      Service 3
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
 
@@ -134,12 +145,24 @@ const Navbar = () => {
             <li key={link.key}>
               <Link
                 href={link.href}
-                className="block text-white hover:underline subtle-semibold"
+                className={`${
+                  router === link.href
+                    ? "text-light_green"
+                    : "text-white"
+                } block hover:underline subtle-semibold`}
               >
                 {link.label}
               </Link>
             </li>
           ))}
+          <li>
+            <Link
+              href="#"
+              className="block text-white hover:underline subtle-semibold"
+            >
+              Services
+            </Link>
+          </li>
         </ul>
         <Button className="mt-4 w-full outline-btn-light text-light_green small-bold">
           Contact Us

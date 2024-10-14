@@ -4,7 +4,7 @@ import ServicesSlider from "./ServicesSlider";
 
 const Services = () => {
   return (
-    <section className="flex items-center gap-14 lg:gap-44 my-24 container mx-auto">
+    <section className="flex justify-end items-center gap-14 my-24 container ml-28 ">
       <div className="">
         <div className="flex items-center gap-3 h2-bold text-light_green">
           <div className="flex items-center gap-1 h2-bold text-light_green -ml-2">
@@ -17,7 +17,7 @@ const Services = () => {
           We are Growing and Selling Organic Food
         </p>
       </div>
-      <div>
+      <div className="">
         <ServicesSlider />
       </div>
     </section>

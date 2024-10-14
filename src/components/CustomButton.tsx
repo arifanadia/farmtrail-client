@@ -1,9 +1,17 @@
-
-"use client"
+"use client";
 import { useRef } from "react";
 import gsap from "gsap";
 
-const CustomButton = () => {
+const CustomButton = ({
+  title,
+  className,
+
+}: {
+  title: string;
+  type: string;
+  label: string;
+  className?: string;
+}) => {
   const buttonRef = useRef(null);
 
   // Hover animation to move the button relative to the main div
@@ -27,14 +35,15 @@ const CustomButton = () => {
   };
 
   return (
-    <div className="relative w-[140px] h-[50px] border-2 border-green rounded-lg">
+    <div className={`relative border-2 border-green rounded-lg ${className}`}>
       <button
+        type="submit"
         ref={buttonRef}
         className="bg-green text-white font-dmSans small-bold xl:base-bold  w-full h-full flex items-center justify-center absolute rounded-lg"
         onMouseEnter={handleHover}
         onMouseLeave={handleLeave}
       >
-        Learn More
+        {title}
       </button>
     </div>
   );

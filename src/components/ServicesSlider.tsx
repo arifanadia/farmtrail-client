@@ -23,7 +23,7 @@ const ServicesSlider = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % (slides.length - 3));
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % (slides.length - 2));
     }, 3000); 
 
     return () => clearInterval(interval);
@@ -31,7 +31,7 @@ const ServicesSlider = () => {
 
   useEffect(() => {
     gsap.to(".slides-container", {
-      x: `-${currentIndex * 35}%`,
+      x: `-${currentIndex * 15}%`,
       duration: 0.5,
       ease: "power1.inOut",
     });
@@ -39,9 +39,9 @@ const ServicesSlider = () => {
 
   return (
     <div className="relative overflow-hidden w-full">
-      <div className="slides-container flex" style={{ width: `${slides.length * 23}%` }}>
+      <div className="slides-container flex" style={{ width: `${slides.length * 20}%` }}>
         {slides.map((slide, index) => (
-          <div key={index} className="flex-shrink-0 w-1/4"> 
+          <div key={index} className="flex-shrink-0 justify-end w-1/4"> 
             <h2 className="h3-medium text-white mb-4">{slide.title}</h2>
             <Image
               src={slide.img}

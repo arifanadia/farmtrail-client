@@ -14,64 +14,55 @@ const Hero = () => {
   const reviewRef = useRef(null);
   
   useEffect(() => {
-    // GSAP Animation for the cow image coming from the left
     gsap.from(cowRef.current, {
       x: -100,
       opacity: 0,
       duration: 1,
       ease: "power2.out",
-      delay: 0.5,
+      delay: 0.2,
       onComplete: () => {
         gsap.to(cowRef.current, { x: 0, opacity: 1 });
     
       },
     });
-
-    // GSAP Animation for the hen image coming from the top
     gsap.from(henRef.current, {
       y: -100,
       opacity: 0,
       duration: 1,
       ease: "power2.out",
-      delay: 0.6,
+      delay: 0.3,
       onComplete: () => {
         gsap.to(henRef.current, { y: 0, opacity: 1 });
       },
     });
-
-    // GSAP Animation for the farmer image coming from below
     gsap.from(farmerRef.current, {
       y: 100,
       opacity: 0,
       duration: 1,
       ease: "power2.out",
-      delay: 0.8,
+      delay: 0.4,
       onComplete: () => {
         gsap.to(farmerRef.current, { y: 0, opacity: 1 });
    
       },
     });
-
-    // GSAP Animation for the vegetable image coming from the top
     gsap.from(vegetablesRef.current, {
       y: -100,
       opacity: 0,
       duration: 1,
       ease: "power2.out",
-      delay: 0.9,
+      delay: 0.5,
       onComplete: () => {
         gsap.to(vegetablesRef.current, { y: 0, opacity: 1 });
 
       },
     });
-
-    // GSAP Animation for the review container appearing from below
     gsap.to(reviewRef.current, {
-      x: 20, // Start below its final position
+      x: 20, 
       opacity: 0,
       duration: 1,
       ease: "power2.out",
-      delay: 1.4,
+      delay: 0.8,
       onComplete: () => {
         gsap.to(reviewRef.current, { y: 0, opacity: 1 });
       },
@@ -79,19 +70,18 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-r from-green-100 via-blue-50 to-green-50 flex flex-col sm:flex-row justify-between gap-96 my-36 ">
+    <section className="relative flex flex-col sm:flex-row justify-between gap-80 lg:my-36">
       <div className="w-[50%]">
         
-        <div className="absolute border-2 border-light_green rounded-lg w-[270px] h-[200px] xl:h-[300px] xl:w-[500px] lg:top-14 top-60 md:top-[75px] xl:-left-16"></div>
+        <div className="absolute border-2 border-light_green rounded-lg w-[270px] h-[200px] xl:h-[300px] xl:w-[500px] lg:top-14 top-60 md:top-[75px] "></div>
 
-        {/* Images with refs for animations */}
         <Image
           src="/cow.png"
           alt="cow"
           height={200}
           width={260}
           ref={cowRef}
-          className="absolute xl:top-[100px] top-[308px] md:  xl:-left-14 xl:w-[260px] w-[140px]"
+          className="absolute xl:top-[100px] top-[308px] md:  xl:w-[260px] w-[140px]"
         />
         <Image
           src="/hen.png"
@@ -144,12 +134,12 @@ const Hero = () => {
         <h1 className="body-bold 2xl:h2-bold 3xl:h1-bold uppercase">
           Have a safe and <br /> productive harvest
         </h1>
-        <p className="small-regular xl:menu-regular text-light-2 w-[100%] xl:w-[90%] mb-8 xl:mb-20">
+        <p className="small-regular xl:menu-regular text-light-2 w-[100%] xl:w-[80%] mb-8 xl:mb-20">
           Cras sed felis eget velit aliquet sagittis. Varius quam quisque id diam vel quam. Odio ut sem nulla pharetra diam sit. Cras sed felis
           eget velit aliquet sagittis. Varius quam quisque id diam vel quam
         </p>
         <div className="flex justify-center md:justify-start gap-3 xl:gap-8 items-center">
-          <CustomButton />
+        <CustomButton title="Learn More" type="" label="" className="w-40 h-12" />
           <Link href='' className="flex items-center gap-2">
             <div className="border-2 border-light_green p-2 xl:p-4 rounded-full transition-all duration-300 ease-in-out hover:bg-light_green">
               <FaPlay className="text-light_green text-sm xl:text-base transition-all duration-300 ease-in-out hover:text-white" />
