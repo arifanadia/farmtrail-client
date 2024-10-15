@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation"; // Import useRouter for route mat
 const navLinks = [
   { key: "home", label: "Home", href: "/" },
   { key: "about", label: "About", href: "/about" },
-  { key: "products", label: "Products", href: "/Products" },
+  { key: "products", label: "Products", href: "/products" },
   { key: "blogs", label: "Blogs", href: "/blogs" },
 ];
 
@@ -46,7 +46,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`flex justify-between gap-4 items-center fixed z-50 text-white py-4 px-8 w-full ${bgColor} transition-all duration-300`}>
+    <nav className={`flex justify-between gap-4 items-center fixed z-50 text-white py-4 px-28 w-full ${bgColor} transition-all duration-300`}>
       <Link href="/" aria-label="Home">
         <Image
           src="/png/Farmtrail-logo-light.png"

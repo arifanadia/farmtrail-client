@@ -70,7 +70,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative flex flex-col sm:flex-row justify-between gap-80 lg:my-36">
+    <section className="relative flex flex-col sm:flex-row justify-between gap-80 lg:my-24">
       <div className="w-[50%]">
         
         <div className="absolute border-2 border-light_green rounded-lg w-[270px] h-[200px] xl:h-[300px] xl:w-[500px] lg:top-14 top-60 md:top-[75px] "></div>

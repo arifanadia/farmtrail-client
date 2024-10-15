@@ -26,8 +26,13 @@
     @apply text-14-medium text-dark-700 !important;
   }
 
-  .shad-input {
-    @apply bg-dark-1 placeholder:text-dark-2 border-light-br h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+  .search-input {
+    @apply appearance-none h-12 base-regular;
+
+  }
+  input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
   }
   /* TYPOGRAPHY */
   .h2-bold {
@@ -173,4 +178,64 @@
     @apply mr-0;
   }
   
+}
+
+
+/* price range */
+
+/* AB Range Slider */
+#range-slider-ab {
+ @apply h-2 bg-[#484848]
+}
+
+#range-slider-ab .range-slider__range {
+@apply bg-light_green
+}
+
+#range-slider-ab .range-slider__thumb {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+#range-slider-ab .range-slider__thumb[data-lower] {
+  background: url("/png/angle-left.png") no-repeat center
+  #B4E330;
+  width: 24px;
+  height: 24px;
+}
+
+#range-slider-ab .range-slider__thumb[data-upper] {
+  background: url("/png/angle-right.png") no-repeat center
+  #B4E330;
+  width: 24px;
+  height: 24px;
+}
+
+#range-slider-ab .range-slider__thumb[data-lower][data-active] {
+  animation: rotate-anti-clockwise 0.9s infinite;
+}
+
+#range-slider-ab .range-slider__thumb[data-upper][data-active] {
+  animation: rotate-clockwise 0.9s infinite;
+}
+
+@keyframes rotate-clockwise {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes rotate-anti-clockwise {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
 }
