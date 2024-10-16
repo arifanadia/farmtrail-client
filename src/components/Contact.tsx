@@ -1,6 +1,7 @@
 "use client";
+import ContactForm from "@/components/ContactForm";
 import { HiOutlineMail, HiOutlinePhone } from "react-icons/hi";
-import ContactForm from "./ContactForm";
+
 
 const Contact = () => {
   

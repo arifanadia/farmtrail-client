@@ -1,16 +1,18 @@
 "use client"
-import About from "@/components/About";
+
 import Blogs from "@/components/Blogs";
-import Hero from "@/components/Hero";
+import Contact from "@/components/Contact";
+import InstaStories from "@/components/InstaStories";
 import Loader from "@/components/Loader";
-import Projects from "@/components/Projects";
-import Provide from "@/components/Provide";
 import Quote from "@/components/Quote";
-import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
 import { useEffect, useState } from "react";
-import InstaStories from "@/components/InstaStories";
-import Contact from "@/components/Contact";
+import Projects from "../components/Projects";
+import Provide from "@/components/Provide";
+import Services from "@/components/Services";
+import Hero from "@/components/Hero";
+import About from "./about/page";
+
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

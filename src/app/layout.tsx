@@ -4,18 +4,18 @@ import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
-
+import StoreProvider from "./StoreProvider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "700"], 
+  weight: ["400", "500", "700"],
   variable: "--font-dm-sans",
 });
 const openSans = Open_Sans({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  icons: ['/png/Farmtrail-logo.png'],
+  icons: ["/png/Farmtrail-logo.png"],
   title: "FarmTrail",
   description:
     "FarmTrail is a platform that connects farmers and consumers, promoting sustainable agriculture and farm-to-table practices. Discover farming tips, local produce, and more.",
@@ -29,16 +29,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.variable} ${openSans.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <div>{children}</div>
-          <Footer />
-        </ThemeProvider>
+        <StoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            <div>{children}</div>
+            <Footer />
+          </ThemeProvider>
+        </StoreProvider>
       </body>
     </html>
   );

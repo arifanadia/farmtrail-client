@@ -10,6 +10,15 @@ import "react-range-slider-input/dist/style.css";
 
 const RightSideProducts = () => {
   const [values, setValues] = useState<[number, number]>([100, 900]);
+  const categories = [
+    "ALl Products",
+    "Berris",
+    "Milk Products",
+    "Fruits",
+    "Vegetables",
+    "Equipment",
+    "Boxes and Bundles",
+  ];
 
   const handleSliderChange = (newValues: [number, number]) => {
     setValues(newValues);
@@ -27,22 +36,12 @@ const RightSideProducts = () => {
       <div>
         <h3 className="body-bold uppercase my-8">Products Categories</h3>
         <div className="space-y-4">
-          <div className="flex items-center gap-3 ">
-            <div className="border-y-4 border-l-2 border-r-4 border-light_green size-3"></div>
-            <h3 className="body-bold ">All Products</h3>
-          </div>
-          <div className="flex items-center gap-3 ">
-            <div className="border-y-4 border-l-2 border-r-4 border-light_green size-3"></div>
-            <h3 className="body-bold ">All Products</h3>
-          </div>
-          <div className="flex items-center gap-3 ">
-            <div className="border-y-4 border-l-2 border-r-4 border-light_green size-3"></div>
-            <h3 className="body-bold ">All Products</h3>
-          </div>
-          <div className="flex items-center gap-3 ">
-            <div className="border-y-4 border-l-2 border-r-4 border-light_green size-3"></div>
-            <h3 className="body-bold ">All Products</h3>
-          </div>
+          {categories.map((category) => (
+            <div key={category} className="flex items-center gap-3 ">
+              <div className="border-y-4 border-l-2 border-r-4 border-light_green size-3"></div>
+              <h3 className="body-bold ">{category}</h3>
+            </div>
+          ))}
         </div>
       </div>
       <div>
@@ -92,15 +91,14 @@ const RightSideProducts = () => {
           height={500}
           className="object-cover size-96 "
         />
-        <div className=" absolute top-0 h-96 w-[304px] bg-black bg-opacity-40 ">
-        </div>
+        <div className=" absolute top-0 h-96 w-[304px] bg-black bg-opacity-40 "></div>
         <h3 className="h3-bold uppercase absolute top-6 px-6">
-            <span className="text-light_green bg-black">-50%</span> Traditional veggie
-            box
-          </h3>
-          <div className="bg-black p-4 absolute top-28 mx-6">
-            <Timer duration={2 * 24 * 60 * 60 * 1000} />
-          </div>
+          <span className="text-light_green bg-black">-50%</span> Traditional
+          veggie box
+        </h3>
+        <div className="bg-black p-4 absolute top-28 mx-6">
+          <Timer duration={2 * 24 * 60 * 60 * 1000} />
+        </div>
       </div>
     </aside>
   );

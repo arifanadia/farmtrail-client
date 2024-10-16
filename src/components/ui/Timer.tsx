@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-interface TimerProps {
+type TimerProps = {
   duration: number;
 }
 
-const Timer: React.FC<TimerProps> = ({ duration }) => {
+const Timer = ({duration } : TimerProps) => {
   const [time, setTime] = useState(duration);
 
   useEffect(() => {

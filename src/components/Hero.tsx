@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import CustomButton from "./CustomButton";
 import { FaPlay } from "react-icons/fa";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import CustomButton from "@/components/CustomButton";
 
 const Hero = () => {
   const cowRef = useRef(null);
