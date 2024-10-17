@@ -72,7 +72,7 @@ const RightSideProducts = () => {
             value={values}
             onInput={handleSliderChange}
             thumbClassName="w-8 h-8 rounded"
-            rangeClassName="bg-red-500"
+            rangeClassName="bg-light_green"
           />
           <div className="flex justify-between mt-6 text-light-2 small-medium">
             <div className="">From ${values[0]}</div>

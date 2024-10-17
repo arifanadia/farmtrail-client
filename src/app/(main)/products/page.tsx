@@ -1,6 +1,7 @@
+import Products from "@/components/products/Products";
 import Link from "next/link";
 import React from "react";
-import Products from "./Products";
+
 
 const Shop = () => {
   return (

@@ -150,28 +150,28 @@ const Footer = () => {
         {/* Payment Methods */}
         <div className="flex items-center space-x-4 mt-6 md:mt-0">
           <Image
-            src="/visa.png"
+            src="/png/visa.png"
             alt="Visa"
             width={40}
             height={24}
             
           />
           <Image
-            src="/mastercard.png"
+            src="/png/mastercard.png"
             alt="Mastercard"
             width={40}
             height={24}
            
           />
           <Image
-            src="/stripe.png"
+            src="/png/stripe.png"
             alt="Mastercard"
             width={40}
             height={24}
            
           />
           <Image
-            src="/paypal.png"
+            src="/png/paypal.png"
             alt="Mastercard"
             width={100}
             height={35}

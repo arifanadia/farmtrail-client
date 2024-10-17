@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { DM_Sans, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
-import Navbar from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 import StoreProvider from "./StoreProvider";
 
 const dmSans = DM_Sans({
@@ -36,9 +34,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Navbar />
             <div>{children}</div>
-            <Footer />
           </ThemeProvider>
         </StoreProvider>
       </body>

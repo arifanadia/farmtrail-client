@@ -25,7 +25,9 @@
   .shad-input-label {
     @apply text-14-medium text-dark-700 !important;
   }
-
+  .sub-container {
+    @apply mx-auto flex size-full flex-col py-10;
+  }
   .search-input {
     @apply appearance-none h-12 base-regular;
 

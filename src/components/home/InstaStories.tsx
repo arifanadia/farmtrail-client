@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import StorieSlider from "./StorieSlider";
 
+
 const InstaStories = () => {
   return (
     <section className="my-36">

@@ -76,7 +76,7 @@ const Hero = () => {
         <div className="absolute border-2 border-light_green rounded-lg w-[270px] h-[200px] xl:h-[300px] xl:w-[500px] lg:top-14 top-60 md:top-[75px] "></div>
 
         <Image
-          src="/cow.png"
+          src="/png/cow.png"
           alt="cow"
           height={200}
           width={260}
@@ -84,7 +84,7 @@ const Hero = () => {
           className="absolute xl:top-[100px] top-[308px] md:  xl:w-[260px] w-[140px]"
         />
         <Image
-          src="/hen.png"
+          src="/png/hen.png"
           alt="hen"
           height={80}
           width={100}
@@ -92,7 +92,7 @@ const Hero = () => {
           className="absolute xl:top-64 top-[376px] left-40 xl:left-64 w-[60px] xl:w-[100px] "
         />
         <Image
-          src="/farmer.png"
+          src="/png/farmer.png"
           alt="farmer"
           height={200}
           width={250}
@@ -100,7 +100,7 @@ const Hero = () => {
           className="absolute top-[242px] xl:-top-14 left-20 w-[120px] xl:w-[250px]"
         />
         <Image
-          src="/vegetables.png"
+          src="/png/vegetables.png"
           alt="vegetables"
           height={100}
           width={150}
@@ -118,7 +118,7 @@ const Hero = () => {
             - John Doe, Farmer
           </p>
           <Image
-            src="/grass.png"
+            src="/png/grass.png"
             alt="grass"
             width={100}
             height={40}

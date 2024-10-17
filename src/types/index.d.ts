@@ -25,6 +25,12 @@ declare module "react-rating" {
 
   export default Rating;
 }
+declare module 'react-range-slider-input' {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const content: any;
+  export default content;
+}
+
 
 declare interface CreateUserParams {
   name: string;

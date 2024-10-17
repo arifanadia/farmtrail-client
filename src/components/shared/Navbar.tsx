@@ -10,9 +10,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Button } from "../ui/button";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { usePathname } from "next/navigation"; // Import useRouter for route matching
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"; // Add icons
+import { usePathname } from "next/navigation";
+import { BsFillBasket2Fill } from "react-icons/bs";
 
 const navLinks = [
   { key: "home", label: "Home", href: "/" },
@@ -22,7 +22,7 @@ const navLinks = [
 ];
 
 const Navbar = () => {
-  const router = usePathname(); // Get the router instance
+  const router = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [bgColor, setBgColor] = useState("bg-transparent");
 
@@ -46,7 +46,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`flex justify-between gap-4 items-center fixed z-50 text-white py-4 px-28 w-full ${bgColor} transition-all duration-300`}>
+    <nav className={`flex justify-between gap-4 items-center fixed z-50 py-4 px-28 w-full ${bgColor} transition-all duration-300 text-white  `}>
       <Link href="/" aria-label="Home">
         <Image
           src="/png/Farmtrail-logo-light.png"
@@ -87,12 +87,12 @@ const Navbar = () => {
           {/* Services Trigger */}
           <NavigationMenuItem>
             <NavigationMenuTrigger>
-              <span className="text-white hover:underline">Services</span>
+              <span className="hover:underline">Services</span>
             </NavigationMenuTrigger>
 
             {/* Dropdown for Services */}
             <NavigationMenuContent>
-              <ul className="flex flex-col p-2 bg-black text-white rounded">
+              <ul className="flex flex-col p-2 bg-black rounded">
                 <li>
                   <NavigationMenuLink>
                     <Link
@@ -129,16 +129,24 @@ const Navbar = () => {
         </NavigationMenuList>
       </NavigationMenu>
 
-      {/* Contact button - Always visible */}
-      <Button className="hidden md:flex outline-btn-light text-light_green small-bold lg:body-bold">
-        Contact Us
-      </Button>
+      {/* Search, Cart, Login Icons */}
+      <div className="hidden md:flex items-center space-x-6">
+        <button aria-label="Search">
+          <MagnifyingGlassIcon className="h-6 w-6 text-white" />
+        </button>
+        <button aria-label="Cart">
+          <BsFillBasket2Fill className="h-6 w-6 text-white" />
+        </button>
+        <Link href="/auth/login">
+          <button className="bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in px-4 py-2 rounded-md small-bold lg:base-bold">Login</button>
+        </Link>
+      </div>
 
       {/* Mobile Menu */}
       <div
         className={`${
           menuOpen ? "block" : "hidden"
-        } md:hidden fixed top-16 left-0 right-0 bg-black text-white p-4`}
+        } md:hidden fixed top-16 left-0 right-0 bg-black p-4`}
       >
         <ul className="flex flex-col space-y-4">
           {navLinks.map((link) => (
@@ -158,15 +166,25 @@ const Navbar = () => {
           <li>
             <Link
               href="#"
-              className="block text-white hover:underline subtle-semibold"
+              className="block hover:underline subtle-semibold"
             >
               Services
             </Link>
           </li>
         </ul>
-        <Button className="mt-4 w-full outline-btn-light text-light_green small-bold">
-          Contact Us
-        </Button>
+
+        {/* Mobile Search, Cart, Login */}
+        <div className="flex justify-between mt-4">
+          <button aria-label="Search">
+            <MagnifyingGlassIcon className="h-6 w-6 text-white" />
+          </button>
+          <button aria-label="Cart">
+            <BsFillBasket2Fill className="h-6 w-6 text-white" />
+          </button>
+          <Link href="/auth/login">
+            <button className="bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in px-4 py-2 rounded-md small-bold">Login</button>
+          </Link>
+        </div>
       </div>
     </nav>
   );

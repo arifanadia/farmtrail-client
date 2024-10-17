@@ -4,10 +4,11 @@ import React, { useEffect } from "react";
 import { FiHeart } from "react-icons/fi";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsFillBasket2Fill } from "react-icons/bs";
-import RightSideProducts from "./RightSideProducts";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../lib/store/features/productsSlice";
 import { RootState, AppDispatch } from "../../lib/store/store"; 
+import Loader from "@/components/Loader";
+import RightSideProducts from "./RightSideProducts";
 
 const Products = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -18,7 +19,7 @@ const Products = () => {
   }, [dispatch]);
 
   if (loading) {
-    return <p>Loading products...</p>;
+    return <Loader />;
   }
 
   if (error) {
