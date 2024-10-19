@@ -74,12 +74,12 @@ const RightSideProducts = () => {
             thumbClassName="w-8 h-8 rounded"
             rangeClassName="bg-light_green"
           />
-          <div className="flex justify-between mt-6 text-light-2 small-medium">
+          <div className="flex-between mt-6 text-light-2 small-medium">
             <div className="">From ${values[0]}</div>
             <div className="">TO ${values[1]}</div>
           </div>
         </div>
-        <Button className="mt-6 w-full text-dark-2 hover:text-light-1 bg-light_green hover:border-2 hover:border-light_green px-6 py-3 base-bold transition-all ease-in">
+        <Button className="outline-btn-light mt-6 w-full px-6 py-3 base-bold">
           Filter
         </Button>
       </div>

@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 @layer base {
   * {
@@ -13,8 +12,8 @@
   body {
     @apply bg-[#000000] text-white min-h-screen font-openSans;
   }
-  .h1{
-    @apply font-dmSans
+  .h1 {
+    @apply font-dmSans;
   }
 }
 
@@ -22,20 +21,15 @@
   .container {
     @apply relative flex-1 overflow-y-auto px-[5%];
   }
-  .shad-input-label {
-    @apply text-14-medium text-dark-700 !important;
-  }
-  .sub-container {
-    @apply mx-auto flex size-full flex-col py-10;
-  }
+
   .search-input {
     @apply appearance-none h-12 base-regular;
-
   }
   input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
   }
+
   /* TYPOGRAPHY */
   .h2-bold {
     @apply text-[44px] font-bold leading-[140%] tracking-tighter;
@@ -57,7 +51,7 @@
   .h3-medium {
     @apply text-[22px] font-medium leading-[140%] tracking-tighter;
   }
-  
+
   .base-bold {
     @apply text-[16px] font-bold leading-[140%] tracking-tighter;
   }
@@ -112,11 +106,11 @@
     @apply text-[12px] font-bold leading-[140%];
   }
 
-  .tiny-medium {
-    @apply text-[10px] font-medium leading-[140%];
+  .text-error {
+    @apply text-[12px] font-medium text-red-600 leading-[140%];
   }
   .outline-btn-light {
-    @apply bg-transparent border-2 border-light_green px-10 py-4
+    @apply bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in;
   }
 
   /* UTILITIES */
@@ -159,7 +153,6 @@
     @apply flex flex-col flex-1 items-center gap-10 overflow-scroll py-10 px-5 md:px-8 lg:p-14 custom-scrollbar;
   }
 
-
   /* Profile */
   .profile-container {
     @apply flex flex-col items-center flex-1 gap-10 overflow-scroll py-10 px-5 md:p-14 custom-scrollbar;
@@ -175,23 +168,21 @@
   .star-icon {
     @apply mr-4;
   }
-  
+
   .star-icon:last-child {
     @apply mr-0;
   }
-  
 }
-
 
 /* price range */
 
 /* AB Range Slider */
 #range-slider-ab {
- @apply h-2 bg-[#484848]
+  @apply h-2 bg-[#484848];
 }
 
 #range-slider-ab .range-slider__range {
-@apply bg-light_green
+  @apply bg-light_green;
 }
 
 #range-slider-ab .range-slider__thumb {
@@ -201,15 +192,13 @@
 }
 
 #range-slider-ab .range-slider__thumb[data-lower] {
-  background: url("/png/angle-left.png") no-repeat center
-  #B4E330;
+  background: url("/png/angle-left.png") no-repeat center #b4e330;
   width: 24px;
   height: 24px;
 }
 
 #range-slider-ab .range-slider__thumb[data-upper] {
-  background: url("/png/angle-right.png") no-repeat center
-  #B4E330;
+  background: url("/png/angle-right.png") no-repeat center #b4e330;
   width: 24px;
   height: 24px;
 }

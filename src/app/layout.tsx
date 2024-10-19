@@ -3,6 +3,7 @@ import { DM_Sans, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import StoreProvider from "./StoreProvider";
+import { Toaster } from "@/components/ui/sonner"
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <div>{children}</div>
+            <Toaster />
           </ThemeProvider>
         </StoreProvider>
       </body>

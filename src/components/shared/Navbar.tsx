@@ -138,7 +138,7 @@ const Navbar = () => {
           <BsFillBasket2Fill className="h-6 w-6 text-white" />
         </button>
         <Link href="/auth/login">
-          <button className="bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in px-4 py-2 rounded-md small-bold lg:base-bold">Login</button>
+          <button className="outline-btn-light px-4 py-2 rounded-md small-bold lg:base-bold">Login</button>
         </Link>
       </div>
 

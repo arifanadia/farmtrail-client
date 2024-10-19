@@ -5,7 +5,7 @@ import { FiHeart } from "react-icons/fi";
 import { IoIosArrowDown } from "react-icons/io";
 import { BsFillBasket2Fill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../../lib/store/features/productsSlice";
+import { fetchProducts } from "../../lib/store/features/products/productsSlice";
 import { RootState, AppDispatch } from "../../lib/store/store"; 
 import Loader from "@/components/Loader";
 import RightSideProducts from "./RightSideProducts";

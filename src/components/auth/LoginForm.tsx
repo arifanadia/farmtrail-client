@@ -1,5 +1,4 @@
 "use client";
-
 import { z } from "zod";
 import React from "react";
 import { Button } from "@/components/ui/button";
@@ -8,33 +7,26 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { loginSchema } from "@/lib/validation";
 
-// Define form schema using zod for validation
-const formSchema = z.object({
-  username: z
-    .string()
-    .min(2, "Username is too short")
-    .max(50, "Username is too long"),
-});
 
 const LoginForm = () => {
-  // Initialize form with react-hook-form and zod validation
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
+      password: ""
     },
   });
 
-  // Function to handle form submission
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof loginSchema>) {
     console.log(values);
   }
   return (
@@ -78,8 +70,8 @@ const LoginForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="mt-6 w-full text-white hover:text-light-1 bg-light_green bg-opacity-90 hover:border-2 hover:border-light_green px-6 py-3 base-bold transition-all ease-in">
-            Submit
+          <Button type="submit" className="outline-btn-light mt-6 w-full px-6 py-3 base-bold ">
+            Sign In
           </Button>
         </form>
       </Form>

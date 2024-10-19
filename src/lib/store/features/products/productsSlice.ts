@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { apiClient } from "../../api-client";
-import { ProductsState, Product } from "../../../types/index";
+import { ProductsState, Product } from "../../../../types/index";
+import { getAllProducts } from "./productsApi";
 
 // Define the initial state using the ProductsState interface
 const initialState: ProductsState = {
@@ -9,14 +10,12 @@ const initialState: ProductsState = {
   error: null,
 };
 
-// Define an async action to fetch products using Axios
 export const fetchProducts = createAsyncThunk<Product[], void>(
   "products/fetchProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await apiClient.get("/products"); 
-      return response.data as Product[];
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const products = await getAllProducts()
+      return products as Product[];
     } catch (error: any) {
       return rejectWithValue(
         error.response?.data?.message || "Failed to fetch products"
@@ -25,7 +24,6 @@ export const fetchProducts = createAsyncThunk<Product[], void>(
   }
 );
 
-// Create the products slice
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -62,14 +60,14 @@ const productsSlice = createSlice({
       )
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string;
+        state.error = action.error?.message as string;
       });
   },
 });
 
-// Export the action creators
+
 export const { addProduct, removeProduct, updateProduct } =
   productsSlice.actions;
 
-// Export the reducer
+
 export default productsSlice.reducer;

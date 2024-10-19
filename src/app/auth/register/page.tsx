@@ -1,5 +1,4 @@
 "use client";
-import LoginForm from "@/components/auth/LoginForm";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef } from "react";
@@ -8,11 +7,11 @@ import RegisterForm from "@/components/auth/RegisterForm";
 
 const Register = () => {
   const logoRef = useRef(null);
-  const loginContainerRef = useRef(null);
+  const registerContainerRef = useRef(null);
 
   useEffect(() => {
     gsap.fromTo(
-      loginContainerRef.current,
+      registerContainerRef.current,
       { x: -200, opacity: 0 },
       {
         x: 0,
@@ -37,7 +36,7 @@ const Register = () => {
   return (
     <div className="relative max-h-screen h-screen overflow-hidden">
       <div
-        ref={loginContainerRef}
+        ref={registerContainerRef}
         className="flex-between items-center max-w-4xl mx-auto my-12 dark:bg-black border-2 border-light-br shadow-lg p-12 shadow-light-br"
       >
         <Image
