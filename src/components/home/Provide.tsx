@@ -1,26 +1,9 @@
-'use client';
 import Image from "next/image";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { FaCircleCheck } from "react-icons/fa6";
-import Typewriter from 'typewriter-effect/dist/core';
+import Typewriter from 'typewriter-effect';
 
-const Provide: React.FC = () => {
-  const typewriterRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (typewriterRef.current) {
-      new Typewriter(typewriterRef.current, {
-        strings: [
-          "We provide our growers with the best quality products available "
-        ],
-        autoStart: true,
-        loop: true,
-        delay: 50,
-        deleteSpeed: 50,
-      });
-    }
-  }, []);
-
+const Provide = () => {
   return (
     <section className="container max-w-7xl mx-auto px-4">
       <div className="flex items-center">
@@ -29,7 +12,17 @@ const Provide: React.FC = () => {
         </span>
         <div className="w-[72%]">
           <h2 className="h2-bold w-full">
-            <div ref={typewriterRef}></div>
+            <Typewriter
+              options={{
+                strings: [
+                  "We provide our growers with the best quality products available"
+                ],
+                autoStart: true,
+                loop: true,
+                delay: 50,
+                deleteSpeed: 50,
+              }}
+            />
           </h2>
           <p className="subtle-regular w-[68%]">
             Odio ut sem nulla pharetra diam sit amet nisl suscipit. Amet aliquam

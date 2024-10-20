@@ -1,3 +1,5 @@
+
+
 declare module "typewriter-effect/dist/core" {
   export default class Typewriter {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -11,6 +13,28 @@ declare module "typewriter-effect/dist/core" {
     changeDelay(newDelay: number): Typewriter;
   }
 }
+import * as React from "react";
+
+export interface SliderProps {
+    disabled?: boolean | undefined;
+    format?: ((value: number) => string | number | undefined) | undefined;
+    handleLabel?: string | undefined;
+    labels?: { [value: number]: string } | undefined;
+    max?: number | undefined;
+    min?: number | undefined;
+    onChange?(value: number): void;
+    onChangeComplete?(value: number): void;
+    onChangeStart?(value: number): void;
+    orientation?: string | undefined;
+    reverse?: boolean | undefined;
+    step?: number | undefined;
+    tooltip?: boolean | undefined;
+    className?: string | undefined;
+    value: number;
+}
+
+export default class Slider extends React.Component<SliderProps> {}
+
 declare module "react-rating" {
   import React from "react";
 
@@ -25,18 +49,8 @@ declare module "react-rating" {
 
   export default Rating;
 }
-declare module 'react-range-slider-input' {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const content: any;
-  export default content;
-}
 
 
-declare interface CreateUserParams {
-  name: string;
-  email: string;
-  phone: string;
-}
 export interface Product {
   id: number;
   productName: string;

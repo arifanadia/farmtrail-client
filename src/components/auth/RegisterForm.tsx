@@ -38,9 +38,6 @@ const RegisterForm = () => {
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
     const {username, email, password } = values;
-    console.log(values);
-    
-
     const resultAction = await dispatch(registerUser({ username, email, password }));
 
     if (registerUser.fulfilled.match(resultAction)) {
@@ -49,7 +46,8 @@ const RegisterForm = () => {
  
       // Handle successful registration
     } else if (registerUser.rejected.match(resultAction)) {
-      const errorMessage = resultAction.payload?.errorMessage || 'An unknown error occurred';
+      const errorPayload = resultAction.payload as { errorMessage?: string } | undefined;
+      const errorMessage = errorPayload?.errorMessage || 'An unknown error occurred';
       setError(errorMessage);
   }
   }

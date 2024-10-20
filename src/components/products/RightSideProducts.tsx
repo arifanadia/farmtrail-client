@@ -5,6 +5,7 @@ import Timer from "@/components/ui/Timer";
 import Image from "next/image";
 import React, { useState } from "react";
 import { IoSearchSharp } from "react-icons/io5";
+// @ts-expect-ignore
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 

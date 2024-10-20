@@ -55,8 +55,8 @@ const Products = () => {
                   height={500}
                   className="object-cover size-60"
                 />
-                <div className="absolute bg-white bg-opacity-10 bottom-0 w-60 p-4 flex justify-end">
-                  <FiHeart className="text-green text-2xl" />
+                <div className="absolute bg-white bg-opacity-70 bottom-0 right-2 size-12 p-3 flex justify-end">
+                  <FiHeart className="text-green text-3xl" />
                 </div>
               </div>
 
