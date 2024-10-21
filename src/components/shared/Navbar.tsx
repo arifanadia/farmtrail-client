@@ -46,18 +46,19 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`flex justify-between gap-4 items-center fixed z-50 py-4 px-28 w-full ${bgColor} transition-all duration-300 text-white  `}>
+    <nav className={`flex justify-between gap-4 items-center fixed z-50 py-4 px-5 lg:px-28 w-full ${bgColor} transition-all duration-300 text-white `}>
       <Link href="/" aria-label="Home">
         <Image
           src="/png/Farmtrail-logo-light.png"
           alt="Farmtrail Logo"
-          width={180}
+          width={200}
           height={50}
+          className="w-[120px] h-[30px] lg:w-[180px] lg:h-[40px]"
         />
       </Link>
 
       {/* Hamburger icon for small screens */}
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <button onClick={toggleMenu} aria-label="Toggle Menu">
           {menuOpen ? (
             <XMarkIcon className="h-6 w-6 text-white" />
@@ -68,7 +69,7 @@ const Navbar = () => {
       </div>
 
       {/* Main menu - hidden on small screens */}
-      <NavigationMenu className="hidden md:flex space-x-4 menu-medium">
+      <NavigationMenu className="hidden lg:flex space-x-4 menu-medium">
         <NavigationMenuList className="flex space-x-12">
           {navLinks.map((link) => (
             <NavigationMenuItem key={link.key}>
@@ -130,7 +131,7 @@ const Navbar = () => {
       </NavigationMenu>
 
       {/* Search, Cart, Login Icons */}
-      <div className="hidden md:flex items-center space-x-6">
+      <div className="hidden lg:flex items-center space-x-6">
         <button aria-label="Search">
           <MagnifyingGlassIcon className="h-6 w-6 text-white" />
         </button>
@@ -146,7 +147,7 @@ const Navbar = () => {
       <div
         className={`${
           menuOpen ? "block" : "hidden"
-        } md:hidden fixed top-16 left-0 right-0 bg-black p-4`}
+        } lg:hidden fixed top-16 left-0 right-0 bg-black p-4`}
       >
         <ul className="flex flex-col space-y-4">
           {navLinks.map((link) => (

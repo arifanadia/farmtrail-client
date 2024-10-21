@@ -43,10 +43,10 @@ const ContactForm = () => {
 
   return (
     <div className="bg-[#272727] p-16">
-      <h3 className="text-28 mb-8">Contact Us</h3>
+      <h3 className="h3-bold text-28 mb-8">Contact Us</h3>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <div className="flex gap-8 items-center">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center">
             <FormField
               control={form.control}
               name="name"
@@ -78,7 +78,6 @@ const ContactForm = () => {
           <Textarea 
           placeholder="Your Message" className="h-40"/>
 
-          {/* Submit Button */}
           <CustomButton title="Submit" type="submit" label="Submit" className="w-full h-14" />
         </form>
       </Form>

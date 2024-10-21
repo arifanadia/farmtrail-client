@@ -105,6 +105,9 @@
   .subtle-bold {
     @apply text-[12px] font-bold leading-[140%];
   }
+  .subtle-regular {
+    @apply text-[12px] font-normal leading-[140%];
+  }
 
   .text-error {
     @apply text-[12px] font-medium text-red-600 leading-[140%];
@@ -230,3 +233,18 @@
     transform: translate(-50%, -50%) rotate(-360deg);
   }
 }
+
+.slides-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  padding: 1rem; /* Adjust as needed */
+}
+
+

@@ -10,7 +10,7 @@ const InstaStories = () => {
         <span className="subtle-semibold text-light_green uppercase">
         Our Instagram
         </span>
-        <h2 className="h2-bold ">Get the Updates 
+        <h2 className="h3-bold lg:h2-bold">Get the Updates 
         and Stories</h2>
         <Link href="https://www.instagram.com/" className="text-sm text-light_green" >@FarmTrail_Company</Link>
       </div>

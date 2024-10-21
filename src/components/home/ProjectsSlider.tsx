@@ -16,11 +16,11 @@ const ProjectsSlider = () => {
     <div className="swiper-container">
       <Swiper
         ref={swiperRef}
-        modules={[EffectCoverflow, Navigation,]}
+        modules={[EffectCoverflow, Navigation]}
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
-        slidesPerView={4}
+        slidesPerView={2} 
         coverflowEffect={{
           rotate: 50,
           stretch: 0,
@@ -30,8 +30,23 @@ const ProjectsSlider = () => {
         }}
         loop={true}
         className="mySwiper"
+        breakpoints={{
+          640: {
+            slidesPerView: 1, 
+          },
+ 
+          768: {
+            slidesPerView: 2, 
+          },
+          1024: {
+            slidesPerView: 3, 
+          },
+          1440: {
+            slidesPerView: 4, 
+          }
+        }}
       >
-        {/* Slides */}
+
         {[...Array(6)].map((_, index) => (
           <SwiperSlide key={index}>
             <Image 
@@ -39,7 +54,7 @@ const ProjectsSlider = () => {
               width={400} 
               height={250} 
               alt={`Project ${index + 1}`} 
-              className='object-cover h-96' 
+              className='object-cover  h-72 lg:h-96' 
             />
           </SwiperSlide>
         ))}

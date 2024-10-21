@@ -9,13 +9,13 @@ import {
 
 const About = () => {
   return (
-    <section className="flex flex-col md:flex-row justify-end items-center gap-14 ml-44 py-12 ">
+    <section className="flex flex-col md:flex-row justify-end items-center gap-14 lg:ml-44 py-12 text-center lg:text-left ">
       <div className="flex-1">
         <div>
           <span className="subtle-semibold text-light_green uppercase">
             About Company
           </span>
-          <h2 className="h2-bold">
+          <h2 className="h3-bold lg:h2-bold">
             We Provide a Full Range <br />
             of Services
           </h2>
@@ -23,7 +23,7 @@ const About = () => {
 
         <Accordion type="single" collapsible className="w-full space-y-4 mt-4">
           <AccordionItem value="item-1" className="">
-            <AccordionTrigger className="h3-medium hover:text-light_green hover:no-underline transition-colors duration-300 ">
+            <AccordionTrigger className="base-medium lg:h3-medium hover:text-light_green hover:no-underline transition-colors duration-300 ">
               We support growers with personalized services
             </AccordionTrigger>
             <AccordionContent className=" text-light-2 rounded-md">
@@ -35,7 +35,7 @@ const About = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
-            <AccordionTrigger className="h3-medium hover:text-light_green hover:no-underline transition-colors duration-300">
+            <AccordionTrigger className="base-medium lg:h3-medium hover:text-light_green hover:no-underline transition-colors duration-300">
             Our innovations are helping people live healthier lives
             </AccordionTrigger>
             <AccordionContent className=" text-light-2 rounded-md">
@@ -47,7 +47,7 @@ const About = () => {
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-3">
-            <AccordionTrigger className="h3-medium hover:text-light_green hover:no-underline transition-colors duration-300">
+            <AccordionTrigger className="base-medium lg:h3-medium hover:text-light_green hover:no-underline transition-colors duration-300">
             Innovative solutions for consumers seeking foods
             </AccordionTrigger>
             <AccordionContent className=" text-light-2 rounded-md">

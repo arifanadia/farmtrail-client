@@ -24,7 +24,7 @@ const RegisterForm = () => {
   const dispatch: AppDispatch = useDispatch();
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  console.log(router);
+
   
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),

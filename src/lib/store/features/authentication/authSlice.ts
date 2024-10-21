@@ -12,7 +12,7 @@ import { apiClient } from "@/lib/api-client";
 interface User {
   email: string;
   password: string;
-  username?: string; // Optional for login
+  username?: string; 
 }
 
 interface AuthState {

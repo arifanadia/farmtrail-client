@@ -22,13 +22,12 @@ const StorieSlider = () => {
   ];
 
   useEffect(() => {
-    // Animate slides on component mount
     const slides = document.querySelectorAll('.swiper-slide');
 
     gsap.fromTo(
       slides,
-      { opacity: 0, scale: 0.8 }, // Initial state
-      { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1 } // Animation to
+      { opacity: 0, scale: 0.8 }, 
+      { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1 }
     );
   }, []);
 
@@ -40,7 +39,21 @@ const StorieSlider = () => {
         effect="coverflow"
         grabCursor={true}
         centeredSlides={true}
-        slidesPerView={4}
+        slidesPerView={4} 
+        breakpoints={{
+          320: {
+            slidesPerView: 2, 
+          },
+          640: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3, 
+          },
+          1280: {
+            slidesPerView: 4, 
+          }
+        }}
         coverflowEffect={{
           rotate: 0,
           stretch: 80,
@@ -59,7 +72,7 @@ const StorieSlider = () => {
               width={400} 
               height={250} 
               alt={`stories ${story.title}`} 
-              className='object-cover h-[500px] rounded-lg' 
+              className='object-cover h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] rounded-lg'  // Responsive image height
             />
           </SwiperSlide>
         ))}

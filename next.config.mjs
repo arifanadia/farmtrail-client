@@ -3,11 +3,13 @@ const nextConfig = {
     images: {
         domains: ['i.ibb.co'], 
       },
-      eslint: {
-        // Warning: This allows production builds to successfully complete even if
-        // your project has ESLint errors.
+      // eslint: {
+      //   ignoreDuringBuilds: true,
+      // },
+      typescript: {
         ignoreDuringBuilds: true,
       },
+      
 };
 
 export default nextConfig;

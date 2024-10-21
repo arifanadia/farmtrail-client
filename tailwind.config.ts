@@ -11,9 +11,7 @@ const config: Config = {
   	container: {
   		padding: '2rem',
   		screens: {
-  			'3xl': '1516px',
   			'2xl': '1400px',
-  			'xl': '1024px'
   		}
   	},
   	extend: {

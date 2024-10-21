@@ -68,8 +68,8 @@ const Testimonials = () => {
   ];
 
   const visibleSlides = 4;
-  const slideWidth = 100 / visibleSlides;
-
+  const slideWidth = window.innerWidth < 640 ? 102 : 100 / visibleSlides;
+  const duration = window.innerWidth < 768 ? 0.5 : 0.8;
   useEffect(() => {
     gsap.set(testimonials.current, { x: 0 });
   }, []);
@@ -77,12 +77,12 @@ const Testimonials = () => {
   const goToNextSlide = () => {
     let nextIndex = currentIndex + 1;
     if (nextIndex >= testimonialData.length) {
-      nextIndex = 0; // Reset to the first slide
+      nextIndex = 0; 
     }
     setCurrentIndex(nextIndex);
     gsap.to(testimonials.current, {
       x: `-${nextIndex * slideWidth}%`,
-      duration: 0.8,
+      duration: duration,
       ease: "power2.out",
     });
   };
@@ -90,33 +90,33 @@ const Testimonials = () => {
   const goToPreviousSlide = () => {
     let prevIndex = currentIndex - 1;
     if (prevIndex < 0) {
-      prevIndex = testimonialData.length - 1; // Go to the last slide
+      prevIndex = testimonialData.length - 1; 
     }
     setCurrentIndex(prevIndex);
     gsap.to(testimonials.current, {
       x: `-${prevIndex * slideWidth}%`,
-      duration: 0.8,
+      duration: duration,
       ease: "power2.out",
     });
   };
 
   return (
-    <section className="container ml-24">
-      <div>
+    <section className="lg:container lg:ml-24">
+      <div className="text-center lg:text-left">
         <span className="subtle-semibold text-light_green uppercase">
           testimonials
         </span>
-        <h2 className="h2-bold">Customer Stories</h2>
+        <h2 className="h3-bold lg:h2-bold">Customer Stories</h2>
       </div>
 
       <div className="relative w-full overflow-hidden mt-8">
-        {/* Testimonials */}
-        <div className="flex gap-6" ref={testimonials}>
+  
+        <div className="flex gap-2 lg:gap-6" ref={testimonials}>
           {testimonialData.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="flex-shrink-0"
-              style={{ width: `${slideWidth}%` }} // Each testimonial takes up 25% of the width
+              className="flex-shrink-0 w-full mx-auto md:w-1/2 lg:w-1/3"
+       
             >
               <div className="p-8 border-2 border-light-br h-80">
                 <div className="h-36">
@@ -129,7 +129,7 @@ const Testimonials = () => {
                   <h4 className="base-bold text-light_green my-2">
                     {testimonial.heading}
                   </h4>
-                  <p className="small-regular text-light-2">
+                  <p className="subtle-regular lg:small-regular text-light-2">
                     {testimonial.text}
                   </p>
                 </div>
@@ -139,7 +139,7 @@ const Testimonials = () => {
                     alt={testimonial.name}
                     width={400}
                     height={400}
-                    className="object-cover size-24 rounded-full"
+                    className="object-cover size-20 lg:size-24 rounded-full"
                   />
                   <div>
                     <h1 className="subtle-semibold text-light-1 uppercase">
@@ -153,7 +153,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="flex gap-10 mt-12">
+        <div className="flex gap-10 mt-6 lg:mt-12">
           <button
             className="border border-light-br p-2 xl:p-4 rounded-lg transition-all duration-300 ease-in-out"
             onClick={goToPreviousSlide}

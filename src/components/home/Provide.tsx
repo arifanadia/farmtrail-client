@@ -6,12 +6,12 @@ import Typewriter from 'typewriter-effect';
 const Provide = () => {
   return (
     <section className="container max-w-7xl mx-auto px-4">
-      <div className="flex items-center">
+      <div className="flex flex-col lg:flex-row items-center text-center lg:text-left">
         <span className="subtle-semibold text-light_green uppercase flex-1">
           Quality Products
         </span>
-        <div className="w-[72%]">
-          <h2 className="h2-bold w-full">
+        <div className="lg:w-[72%]">
+          <h2 className="h3-bold lg:h2-bold w-full">
             <Typewriter
               options={{
                 strings: [
@@ -24,14 +24,14 @@ const Provide = () => {
               }}
             />
           </h2>
-          <p className="subtle-regular w-[68%]">
+          <p className="subtle-regular lg:w-[68%]">
             Odio ut sem nulla pharetra diam sit amet nisl suscipit. Amet aliquam
             id diam maecenas ultricies mi eget mauris. Leo vel orci porta non
             pulvinar neque
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-center gap-6 flex-wrap lg:flex-nowrap">
+      <div className="flex items-center justify-center gap-2 mt-6 lg:mt-0 lg:gap-6 flex-wrap lg:flex-nowrap">
         <div className="py-8 pl-8 pr-12 flex items-center border-2 border-light-br hover:scale-105 hover:shadow-lg hover:border-light_green transition-transform duration-300">
           <Image
             src="/Service/Natural-products.jpg"
