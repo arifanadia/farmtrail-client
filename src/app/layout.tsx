@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import StoreProvider from "./StoreProvider";
 import { Toaster } from "@/components/ui/sonner"
+import AuthListener from "@/lib/store/features/authentication/authlListener";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <AuthListener />
             <div>{children}</div>
             <Toaster />
           </ThemeProvider>

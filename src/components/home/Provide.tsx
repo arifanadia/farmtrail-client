@@ -32,11 +32,11 @@ const Provide = () => {
         </div>
       </div>
       <div className="flex items-center justify-center gap-2 mt-6 lg:mt-0 lg:gap-6 flex-wrap lg:flex-nowrap">
-        <div className="py-8 pl-8 pr-12 flex items-center border-2 border-light-br hover:scale-105 hover:shadow-lg hover:border-light_green transition-transform duration-300">
+        <div className="py-8 pl-8 pr-16 flex items-center border-2 border-light-br hover:scale-105 hover:shadow-lg hover:border-light_green transition-transform duration-300">
           <Image
             src="/Service/Natural-products.jpg"
-            width={160}
-            height={160}
+            width={180}
+            height={180}
             alt="Natural products"
             className="size-40 object-cover"
             loading="lazy"
@@ -69,8 +69,8 @@ const Provide = () => {
         <div className="py-8 pl-8 pr-12 flex items-center border-2 border-light-br hover:scale-105 hover:shadow-lg hover:border-light_green transition-transform duration-300">
           <Image
             src="/Service/animal-nutration.jpg"
-            width={200}
-            height={200}
+            width={180}
+            height={180}
             alt="Animal Nutrition Products"
             className="size-40 object-cover"
             loading="lazy"  

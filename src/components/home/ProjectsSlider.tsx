@@ -52,9 +52,9 @@ const ProjectsSlider = () => {
             <Image 
               src={`/project/Project-${index + 1}.jpg`} 
               width={400} 
-              height={250} 
+              height={500} 
               alt={`Project ${index + 1}`} 
-              className='object-cover  h-72 lg:h-96' 
+              className='object-cover  h-72 lg:h-[500px]' 
             />
           </SwiperSlide>
         ))}

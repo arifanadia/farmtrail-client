@@ -81,7 +81,7 @@ const Hero = () => {
           height={200}
           width={260}
           ref={cowRef}
-          className="absolute xl:top-[100px] top-[35px] left-[12px] md:  xl:w-[260px] w-[170px]"
+          className="absolute xl:top-[100px] top-[35px] left-[28px] xl:left-0 md:  xl:w-[260px] w-[170px]"
         />
         <Image
           src="/png/hen.png"
@@ -89,7 +89,7 @@ const Hero = () => {
           height={80}
           width={100}
           ref={henRef}
-          className="absolute xl:top-64 top-[115px] left-56 xl:left-64 w-[80px] xl:w-[100px] "
+          className="absolute xl:top-64 top-[115px] left-56 xl:left-72 w-[80px] xl:w-[100px] "
         />
         <Image
           src="/png/farmer.png"
@@ -97,7 +97,7 @@ const Hero = () => {
           height={200}
           width={250}
           ref={farmerRef}
-          className="absolute -top-16 xl:-top-14 left-28 w-[160px] xl:w-[250px]"
+          className="absolute -top-16 xl:-top-14 left-32 w-[160px] xl:w-[250px]"
         />
         <Image
           src="/png/vegetables.png"

@@ -1,3 +1,4 @@
+// Navbar.tsx
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,9 +11,22 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline"; // Add icons
-import { usePathname } from "next/navigation";
+import {
+  Bars3Icon,
+  XMarkIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
 import { BsFillBasket2Fill } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux"; // Import useSelector to access Redux state
+import { usePathname } from "next/navigation";
+import { AppDispatch, RootState } from "@/lib/store/store";
+import { logoutUser } from "@/lib/store/features/authentication/authSlice";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
+import { DropdownMenuContent } from "../ui/dropdown-menu";
 
 const navLinks = [
   { key: "home", label: "Home", href: "/" },
@@ -25,6 +39,11 @@ const Navbar = () => {
   const router = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [bgColor, setBgColor] = useState("bg-transparent");
+
+  const user = useSelector((state: RootState) => state.auth.user);
+  const isLoggedIn = !!user;
+
+  const dispatch: AppDispatch = useDispatch();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -45,8 +64,14 @@ const Navbar = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
   return (
-    <nav className={`flex justify-between gap-4 items-center fixed z-50 py-4 px-5 lg:px-28 w-full ${bgColor} transition-all duration-300 text-white `}>
+    <nav
+      className={`flex justify-between gap-4 items-center fixed z-50 py-4 px-5 lg:px-28 w-full ${bgColor} transition-all duration-300 text-white`}
+    >
       <Link href="/" aria-label="Home">
         <Image
           src="/png/Farmtrail-logo-light.png"
@@ -57,7 +82,6 @@ const Navbar = () => {
         />
       </Link>
 
-      {/* Hamburger icon for small screens */}
       <div className="lg:hidden">
         <button onClick={toggleMenu} aria-label="Toggle Menu">
           {menuOpen ? (
@@ -68,7 +92,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Main menu - hidden on small screens */}
       <NavigationMenu className="hidden lg:flex space-x-4 menu-medium">
         <NavigationMenuList className="flex space-x-12">
           {navLinks.map((link) => (
@@ -76,22 +99,17 @@ const Navbar = () => {
               <Link
                 href={link.href}
                 className={`${
-                  router === link.href
-                    ? "text-light_green"
-                    : "text-white"
+                  router === link.href ? "text-light_green" : "text-white"
                 } hover:underline`}
               >
                 {link.label}
               </Link>
             </NavigationMenuItem>
           ))}
-          {/* Services Trigger */}
           <NavigationMenuItem>
             <NavigationMenuTrigger>
               <span className="hover:underline">Services</span>
             </NavigationMenuTrigger>
-
-            {/* Dropdown for Services */}
             <NavigationMenuContent>
               <ul className="flex flex-col p-2 bg-black rounded">
                 <li>
@@ -130,7 +148,6 @@ const Navbar = () => {
         </NavigationMenuList>
       </NavigationMenu>
 
-      {/* Search, Cart, Login Icons */}
       <div className="hidden lg:flex items-center space-x-6">
         <button aria-label="Search">
           <MagnifyingGlassIcon className="h-6 w-6 text-white" />
@@ -138,12 +155,42 @@ const Navbar = () => {
         <button aria-label="Cart">
           <BsFillBasket2Fill className="h-6 w-6 text-white" />
         </button>
-        <Link href="/auth/login">
-          <button className="outline-btn-light px-4 py-2 rounded-md small-bold lg:base-bold">Login</button>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Image
+                  src="/user.jpg"
+                  width={24}
+                  height={24}
+                  alt={`${user.username}`}
+                  className="size-12 rounded-full"
+                />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <div className="flex flex-col py-4 px-2 space-y-2 base-medium">
+                    <Link href="/profile" passHref>
+                      <DropdownMenuItem className="hover:px-3 hover:py-1 hover:border hover:border-light_green">Profile</DropdownMenuItem>
+                    </Link>
+                    <Link href="/profile" passHref>
+                      <DropdownMenuItem className="hover:px-3 hover:py-1 hover:border hover:border-light_green">Orders</DropdownMenuItem>
+                    </Link>
+                    <DropdownMenuItem onClick={handleLogout} className="hover:px-3 hover:py-1 hover:border hover:border-light_green">
+                      Logout
+                    </DropdownMenuItem>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </>
+        ) : (
+          <Link href="/auth/login">
+            <button className="outline-btn-light px-4 py-2 rounded-md small-bold lg:base-bold">
+              Login
+            </button>
+          </Link>
+        )}
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={`${
           menuOpen ? "block" : "hidden"
@@ -155,9 +202,7 @@ const Navbar = () => {
               <Link
                 href={link.href}
                 className={`${
-                  router === link.href
-                    ? "text-light_green"
-                    : "text-white"
+                  router === link.href ? "text-light_green" : "text-white"
                 } block hover:underline subtle-semibold`}
               >
                 {link.label}
@@ -165,16 +210,11 @@ const Navbar = () => {
             </li>
           ))}
           <li>
-            <Link
-              href="#"
-              className="block hover:underline subtle-semibold"
-            >
+            <Link href="#" className="block hover:underline subtle-semibold">
               Services
             </Link>
           </li>
         </ul>
-
-        {/* Mobile Search, Cart, Login */}
         <div className="flex justify-between mt-4">
           <button aria-label="Search">
             <MagnifyingGlassIcon className="h-6 w-6 text-white" />
@@ -182,9 +222,27 @@ const Navbar = () => {
           <button aria-label="Cart">
             <BsFillBasket2Fill className="h-6 w-6 text-white" />
           </button>
-          <Link href="/auth/login">
-            <button className="bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in px-4 py-2 rounded-md small-bold">Login</button>
-          </Link>
+          {isLoggedIn ? (
+            <>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Image
+                    src={"/user.jpg"}
+                    width={50}
+                    height={50}
+                    alt={`${user.username}`}
+                    className="size-24 rounded-full"
+                  />
+                </DropdownMenuTrigger>
+              </DropdownMenu>
+            </>
+          ) : (
+            <Link href="/auth/login">
+              <button className="bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in px-4 py-2 rounded-md small-bold">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

@@ -9,7 +9,7 @@ const Projects = () => (
             </span>
             <h2 className="h3-bold lg:h2-bold ">Recently Completed Projects</h2>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 lg:mt-12">
             <ProjectsSlider />
         </div>
     </section>
