@@ -10,12 +10,25 @@ const initialState: ProductsState = {
   error: null,
 };
 
-export const fetchProducts = createAsyncThunk<Product[], void>(
+export const fetchProducts = createAsyncThunk<Product[], { 
+  page?: number; 
+  limit?: number; 
+  sort?: string; 
+  order?: string; 
+  search?: string; 
+  priceRange?: string; 
+  category?: string 
+}>(
   "products/fetchProducts",
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
+    if (params.priceRange) {
+      params.priceRange = `${params.priceRange[0]}-${params.priceRange[1]}`; // Convert array to string
+    }
     try {
-      const products = await getAllProducts()
-      return products as Product[];
+      // Pass params to the getAllProducts function
+      const products = await getAllProducts(params); 
+        console.log("Fetched products:", products); // <-- Pass parameters here
+      return products ;
     } catch (error: any) {
       return rejectWithValue(
         error.response?.data?.message || "Failed to fetch products"

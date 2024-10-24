@@ -46,7 +46,7 @@ const RightSideProducts = () => {
         </div>
       </div>
       <div>
-        <h3 className="body-bold uppercase my-8">Products Categories</h3>
+        <h3 className="body-bold uppercase my-8">Recommended Products</h3>
         <div className="flex gap-4 items-center">
           <Image
             src={"/argula.jpeg"}

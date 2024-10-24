@@ -31,7 +31,7 @@ const Provide = () => {
           </p>
         </div>
       </div>
-      <div className="flex items-center justify-center gap-2 mt-6 lg:mt-0 lg:gap-6 flex-wrap lg:flex-nowrap">
+      <div className="flex items-center justify-center my-6 lg:mt-0 lg:gap-6 flex-wrap lg:flex-nowrap">
         <div className="py-8 pl-8 pr-16 flex items-center border-2 border-light-br hover:scale-105 hover:shadow-lg hover:border-light_green transition-transform duration-300">
           <Image
             src="/Service/Natural-products.jpg"
@@ -41,7 +41,7 @@ const Provide = () => {
             className="size-40 object-cover"
             loading="lazy"
           />
-          <h2 className="h3-medium text-white">Natural Products</h2>
+          <h2 className="body-medium lg:h3-medium text-white">Natural Products</h2>
         </div>
         <div className="py-8 pl-8 pr-12  flex items-center border-2 border-light-br my-12 hover:scale-105 hover:shadow-lg hover:border-light_green transition-transform duration-300">
           <Image
@@ -53,9 +53,9 @@ const Provide = () => {
             loading="lazy" 
           />
           <div>
-            <h2 className="h3-medium text-white">Innovation and Expertise</h2>
+            <h2 className="body-medium lg:h3-medium text-white">Innovation and Expertise</h2>
             <div className="mt-4 space-y-1">
-              <span className="flex items-center gap-2 text-[12px] animate-bounce">
+              <span className="flex items-center gap-2 subtle-regular animate-bounce">
                 <FaCircleCheck className="text-sm text-light_green" />
                 Successful Food
               </span>
@@ -75,7 +75,7 @@ const Provide = () => {
             className="size-40 object-cover"
             loading="lazy"  
           />
-          <h2 className="h3-medium text-white">Animal Nutrition Products</h2>
+          <h2 className="body-medium lg:h3-medium text-white">Animal Nutrition Products</h2>
         </div>
       </div>
     </section>

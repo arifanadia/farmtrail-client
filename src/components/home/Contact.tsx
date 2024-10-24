@@ -16,7 +16,7 @@ const Contact = () => {
           Lorem ipsum dolor sit amet consectetur adipiscing elit tellus
           elementum consequat eget conva.
         </p>
-        <div className="text-left flex flex-row md:flex-col gap-4 lg:space-y-8 mt-8">
+        <div className="text-left w-[200px] lg:w-full mx-auto lg:mx-0 space-y-2 lg:space-y-8 mt-8 ">
        
             <div className="flex items-center gap-2 lg:gap-4">
               <HiOutlinePhone className="text-2xl lg:text-5xl font-normal text-light_green" />

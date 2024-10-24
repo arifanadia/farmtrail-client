@@ -39,6 +39,8 @@ const Navbar = () => {
   const router = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [bgColor, setBgColor] = useState("bg-transparent");
+  const [isHovered, setIsHovered] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const user = useSelector((state: RootState) => state.auth.user);
   const isLoggedIn = !!user;
@@ -67,29 +69,46 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(logoutUser());
   };
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+  const handleMouseLeave = () => {
 
+      setIsHovered(false);
+  
+  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleCancel = () => {
+    setSearchQuery("");
+    setIsHovered(false);
+  };
   return (
     <nav
       className={`flex justify-between gap-4 items-center fixed z-50 py-4 px-5 lg:px-28 w-full ${bgColor} transition-all duration-300 text-white`}
     >
-      <Link href="/" aria-label="Home">
-        <Image
-          src="/png/Farmtrail-logo-light.png"
-          alt="Farmtrail Logo"
-          width={200}
-          height={50}
-          className="w-[120px] h-[30px] lg:w-[180px] lg:h-[40px]"
-        />
-      </Link>
+      <div className="flex gap-4 items-center">
+        <div className="lg:hidden mt-2">
+          <button onClick={toggleMenu} aria-label="Toggle Menu">
+            {menuOpen ? (
+              <XMarkIcon className="h-6 w-6 text-white" />
+            ) : (
+              <Bars3Icon className="h-6 w-6 text-white" />
+            )}
+          </button>
+        </div>
 
-      <div className="lg:hidden">
-        <button onClick={toggleMenu} aria-label="Toggle Menu">
-          {menuOpen ? (
-            <XMarkIcon className="h-6 w-6 text-white" />
-          ) : (
-            <Bars3Icon className="h-6 w-6 text-white" />
-          )}
-        </button>
+        <Link href="/" aria-label="Home">
+          <Image
+            src="/png/Farmtrail-logo-light.png"
+            alt="Farmtrail Logo"
+            width={200}
+            height={50}
+            className="w-[110px] h-[25px] lg:w-[180px] lg:h-[40px]"
+          />
+        </Link>
       </div>
 
       <NavigationMenu className="hidden lg:flex space-x-4 menu-medium">
@@ -148,11 +167,37 @@ const Navbar = () => {
         </NavigationMenuList>
       </NavigationMenu>
 
-      <div className="hidden lg:flex items-center space-x-6">
-        <button aria-label="Search">
-          <MagnifyingGlassIcon className="h-6 w-6 text-white" />
-        </button>
-        <button aria-label="Cart">
+      <div className="flex items-center space-x-6">
+        <div
+          className="relative flex items-center"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {!isHovered && (
+            <button aria-label="Search" className="focus:outline-none">
+              <MagnifyingGlassIcon className="h-6 w-6 text-white" />
+            </button>
+          )}
+          {isHovered && (
+             <div className="flex items-center space-x-2">
+             <input
+               type="text"
+               value={searchQuery}
+               onChange={handleInputChange}
+               placeholder="Search..."
+               className="transition-all duration-300 ease-in-out bg-transparent text-white px-4 py-1 rounded-md border-light_green border-2 outline-none w-36 md:w-48"
+             />
+             <button
+               aria-label="Cancel Search"
+               className="focus:outline-none"
+               onClick={handleCancel}
+             >
+               <XMarkIcon className="h-6 w-6 text-white" />
+             </button>
+           </div>
+          )}
+        </div>
+        <button aria-label="Cart" className="hidden md:block">
           <BsFillBasket2Fill className="h-6 w-6 text-white" />
         </button>
         {isLoggedIn ? (
@@ -167,17 +212,24 @@ const Navbar = () => {
                   className="size-12 rounded-full"
                 />
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <div className="flex flex-col py-4 px-2 space-y-2 base-medium">
-                    <Link href="/profile" passHref>
-                      <DropdownMenuItem className="hover:px-3 hover:py-1 hover:border hover:border-light_green">Profile</DropdownMenuItem>
-                    </Link>
-                    <Link href="/profile" passHref>
-                      <DropdownMenuItem className="hover:px-3 hover:py-1 hover:border hover:border-light_green">Orders</DropdownMenuItem>
-                    </Link>
-                    <DropdownMenuItem onClick={handleLogout} className="hover:px-3 hover:py-1 hover:border hover:border-light_green">
-                      Logout
+              <DropdownMenuContent className="bg-black">
+                <div className="flex flex-col py-4 px-2 space-y-2 base-medium ">
+                  <Link href="/profile" passHref>
+                    <DropdownMenuItem className="hover:px-3 hover:py-1 hover:border hover:border-light_green">
+                      Profile
                     </DropdownMenuItem>
+                  </Link>
+                  <Link href="/profile" passHref>
+                    <DropdownMenuItem className="hover:px-3 hover:py-1 hover:border hover:border-light_green">
+                      Orders
+                    </DropdownMenuItem>
+                  </Link>
+                  <DropdownMenuItem
+                    onClick={handleLogout}
+                    className="hover:px-3 hover:py-1 hover:border hover:border-light_green"
+                  >
+                    Logout
+                  </DropdownMenuItem>
                 </div>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -222,27 +274,6 @@ const Navbar = () => {
           <button aria-label="Cart">
             <BsFillBasket2Fill className="h-6 w-6 text-white" />
           </button>
-          {isLoggedIn ? (
-            <>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <Image
-                    src={"/user.jpg"}
-                    width={50}
-                    height={50}
-                    alt={`${user.username}`}
-                    className="size-24 rounded-full"
-                  />
-                </DropdownMenuTrigger>
-              </DropdownMenu>
-            </>
-          ) : (
-            <Link href="/auth/login">
-              <button className="bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in px-4 py-2 rounded-md small-bold">
-                Login
-              </button>
-            </Link>
-          )}
         </div>
       </div>
     </nav>

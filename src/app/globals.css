@@ -25,6 +25,9 @@
   .search-input {
     @apply appearance-none h-12 base-regular;
   }
+  .small-search-input {
+    @apply appearance-none h-8 small-regular;
+  }
   input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;

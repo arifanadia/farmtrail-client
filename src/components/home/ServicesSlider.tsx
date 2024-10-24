@@ -10,11 +10,11 @@ interface Slide {
 
 const slides: Slide[] = [
   { title: "Farm Services", img: "/Service/farm-service.jpg" },
-  { title: "Agriculture", img: "/Service/Agriculture.jpg" },
+  { title: "Agriculture", img: "/Service/agriculture.jpg" },
   { title: "Food & Beverage", img: "/Service/food.jpg" },
   { title: "Animal Services", img: "/Service/animal.jpg" },
   { title: "Education and Training", img: "/Service/Education & Training.jpg" },
-  { title: "Tech & Innovation", img: "/Service/Technology & innovation.jpg" },
+  { title: "Tech & Innovation", img: "/Service/Technology & Innovation.jpg" },
   { title: "Agri Financial Service", img: "/Service/finacial.jpg" },
 ];
 

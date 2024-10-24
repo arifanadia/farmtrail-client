@@ -50,7 +50,7 @@ const ProjectsSlider = () => {
         {[...Array(6)].map((_, index) => (
           <SwiperSlide key={index}>
             <Image 
-              src={`/project/Project-${index + 1}.jpg`} 
+              src={`/project/project-${index + 1}.jpg`} 
               width={400} 
               height={500} 
               alt={`Project ${index + 1}`} 

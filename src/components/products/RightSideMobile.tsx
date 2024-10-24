@@ -1,8 +1,9 @@
 import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-  } from "@/components/ui/popover";
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
   import { Button } from "@/components/ui/button";
   import { Input } from "@/components/ui/input";
   import { IoSearchSharp } from "react-icons/io5";
@@ -28,23 +29,23 @@ import {
     };
   
     return (
-      <Popover>
+      <Sheet>
         {/* Popover Trigger Button */}
-        <PopoverTrigger asChild>
-          <Button className="px-4 py-2 outline-btn-light bg-light_green text-white">
+        <SheetTrigger asChild>
+          <Button className="px-4 py-2 outline-btn-light bg-light_green text-white ">
             Filters
           </Button>
-        </PopoverTrigger>
+        </SheetTrigger>
   
         {/* Popover Content */}
-        <PopoverContent className="w-full max-w-xs p-6 bg-black shadow-lg">
-          <div className="space-y-4">
+        <SheetContent className="w-full max-w-xs p-6 bg-black shadow-lg ">
+          <div className="space-y-4 mt-6">
             {/* Search Bar */}
             <div className="relative">
               <Input
                 type="search"
                 placeholder="Search Products..."
-                className="search-input"
+                className="small-search-input"
               />
               <IoSearchSharp className="absolute text-lg font-extrabold right-4 top-1/2 transform -translate-y-1/2 text-light_green pointer-events-none" />
             </div>
@@ -85,8 +86,8 @@ import {
               </Button>
             </div>
           </div>
-        </PopoverContent>
-      </Popover>
+        </SheetContent>
+      </Sheet>
     );
   };
   

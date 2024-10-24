@@ -1,6 +1,8 @@
-import { apiClient } from "@/lib/api-client"
+import { apiClient } from "@/lib/api-client";
 
-export const getAllProducts = async() => {
-    const response = await apiClient.get('/products')
-    return response.data;
+export const getAllProducts = async (params ) => {
+  
+  const response = await apiClient.get(`/products`, { params });
+  console.log(response.data); // Log the response data
+  return response.data.products || [];
 }

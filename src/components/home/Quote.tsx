@@ -5,7 +5,7 @@ const Quote = () => {
   return (
     <section className="relative my-24">
       <div className="w-[80%]">
-        <Image src="/Quote.gif" alt="" width={800} height={500} className="w-full lg:w-[850px] h-auto" />
+        <Image src="/quote.gif" alt="" width={800} height={500} className="w-full lg:w-[850px] h-auto" unoptimized />
       </div>
       <div className="bg-black absolute top-[25%] left-[10%] sm:left-[40%] p-6 sm:p-12 max-w-[90%] sm:max-w-[60%">
         <h3 className="body-bold lg:h3-bold lg:w-[70%]">
