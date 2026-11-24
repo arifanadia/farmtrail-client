@@ -1,18 +1,15 @@
-import Image from "next/image";
 import React from "react";
-import { MdEdit } from "react-icons/md";
+import type { Metadata } from "next";
+import ProfileClient from "@/components/profile/ProfileClient";
 
-const Profile = () => {
-  return (
-    <main className="max-w-7xl mx-5 lg:mx-auto  min-h-screen pt-20">
-      <div className="border-2 border-light-br max-w-3xl h-[500px] mx-auto my-24">
-        <div className="-mt-20 relative">
-            <Image src="/user.jpg" width={150} height={150} alt="" className="size-50 mx-auto rounded-lg" />
-           <span className="text-2xl text-red-800 bg-black bg-opacity-20 absolute p-3 left-[54%] bottom-0"><MdEdit /></span>
-        </div>
-      </div>
-    </main>
-  );
+export const metadata: Metadata = {
+  title: "My Profile | Farmtrail",
+  description:
+    "Manage your Farmtrail client profile, view order history, saved delivery addresses, and account preferences.",
 };
 
-export default Profile;
+const ProfilePage = () => {
+  return <ProfileClient />;
+};
+
+export default ProfilePage;

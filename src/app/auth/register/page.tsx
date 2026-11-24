@@ -37,7 +37,7 @@ const Register = () => {
     <div className="relative max-h-screen h-screen overflow-hidden">
       <div
         ref={registerContainerRef}
-        className="flex-between items-center max-w-4xl mx-auto my-12 dark:bg-black border-2 border-light-br shadow-lg p-12 shadow-light-br"
+        className="flex-between items-center max-w-4xl mx-auto my-12 bg-black border-2 border-light-br shadow-lg p-12 shadow-light-br"
       >
         <Image
           src="/png/reg.png"

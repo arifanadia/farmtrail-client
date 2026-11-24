@@ -1,6 +1,6 @@
  {
   "extends": ["next/core-web-vitals", "next/typescript"],
-  "parser": "@typescript-eslint/parser", // Use TypeScript parser
+  "parser": "@typescript-eslint/parser",
   "rules": {
     "@typescript-eslint/no-explicit-any": "error"
   }

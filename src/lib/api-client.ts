@@ -2,7 +2,7 @@ import axios from "axios";
 
  
 export const apiClient = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:5000",
 });
 
-// "https://farmtrail-server.vercel.app"
+

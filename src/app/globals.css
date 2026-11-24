@@ -5,6 +5,51 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 15%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 138 100% 27%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 76 77% 54%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 28%;
+    --input: 0 0% 28%;
+    --ring: 76 77% 54%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 15%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 138 100% 27%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 76 77% 54%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 28%;
+    --input: 0 0% 28%;
+    --ring: 76 77% 54%;
+  }
+
   * {
     @apply box-border list-none p-0 m-0 scroll-smooth;
   }
@@ -23,10 +68,10 @@
   }
 
   .search-input {
-    @apply appearance-none h-12 base-regular;
+    @apply appearance-none h-12 base-regular bg-[#272727] text-white border border-light-br placeholder:text-gray-400 px-4 rounded-md focus:outline-none focus:border-light_green;
   }
   .small-search-input {
-    @apply appearance-none h-8 small-regular;
+    @apply appearance-none h-8 small-regular bg-[#272727] text-white border border-light-br placeholder:text-gray-400 px-3 rounded-md focus:outline-none focus:border-light_green;
   }
   input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
@@ -116,7 +161,7 @@
     @apply text-[12px] font-medium text-red-600 leading-[140%];
   }
   .outline-btn-light {
-    @apply bg-light_green bg-opacity-90 hover:bg-transparent hover:border-2 hover:border-light_green transition-all ease-in;
+    @apply bg-light_green text-black font-semibold hover:bg-transparent hover:text-light_green hover:border-2 hover:border-light_green transition-all ease-in;
   }
 
   /* UTILITIES */
@@ -183,37 +228,44 @@
 /* price range */
 
 /* AB Range Slider */
-#range-slider-ab {
+#range-slider-desktop,
+#range-slider-mobile {
   @apply h-2 bg-[#484848];
 }
 
-#range-slider-ab .range-slider__range {
+#range-slider-desktop .range-slider__range,
+#range-slider-mobile .range-slider__range {
   @apply bg-light_green;
 }
 
-#range-slider-ab .range-slider__thumb {
+#range-slider-desktop .range-slider__thumb,
+#range-slider-mobile .range-slider__thumb {
   width: 30px;
   height: 30px;
   border-radius: 4px;
 }
 
-#range-slider-ab .range-slider__thumb[data-lower] {
+#range-slider-desktop .range-slider__thumb[data-lower],
+#range-slider-mobile .range-slider__thumb[data-lower] {
   background: url("/png/angle-left.png") no-repeat center #b4e330;
   width: 24px;
   height: 24px;
 }
 
-#range-slider-ab .range-slider__thumb[data-upper] {
+#range-slider-desktop .range-slider__thumb[data-upper],
+#range-slider-mobile .range-slider__thumb[data-upper] {
   background: url("/png/angle-right.png") no-repeat center #b4e330;
   width: 24px;
   height: 24px;
 }
 
-#range-slider-ab .range-slider__thumb[data-lower][data-active] {
+#range-slider-desktop .range-slider__thumb[data-lower][data-active],
+#range-slider-mobile .range-slider__thumb[data-lower][data-active] {
   animation: rotate-anti-clockwise 0.9s infinite;
 }
 
-#range-slider-ab .range-slider__thumb[data-upper][data-active] {
+#range-slider-desktop .range-slider__thumb[data-upper][data-active],
+#range-slider-mobile .range-slider__thumb[data-upper][data-active] {
   animation: rotate-clockwise 0.9s infinite;
 }
 
@@ -239,7 +291,6 @@
 
 .slides-container {
   display: flex;
-  transition: transform 0.5s ease-in-out;
 }
 
 .slide {

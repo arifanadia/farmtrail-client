@@ -57,15 +57,13 @@ const Hero = () => {
 
       },
     });
+    gsap.set(reviewRef.current, { x: 20, opacity: 0 });
     gsap.to(reviewRef.current, {
-      x: 20, 
-      opacity: 0,
+      x: 0,
+      opacity: 1,
       duration: 1,
       ease: "power2.out",
       delay: 0.8,
-      onComplete: () => {
-        gsap.to(reviewRef.current, { y: 0, opacity: 1 });
-      },
     });
   }, []);
 
@@ -81,7 +79,7 @@ const Hero = () => {
           height={200}
           width={260}
           ref={cowRef}
-          className="absolute xl:top-[100px] top-[35px] left-[28px] xl:left-0 md:  xl:w-[260px] w-[170px]"
+          className="absolute xl:top-[100px] top-[35px] left-[28px] xl:left-0 md:xl:w-[260px] w-[170px]"
         />
         <Image
           src="/png/hen.png"
@@ -131,7 +129,7 @@ const Hero = () => {
         <span className="lg:small-semibold small-bold uppercase text-light_green">
           global Nutrition
         </span>
-        <h1 className="h3-bold 2xl:h2-bold 3xl:h1-bold uppercase">
+        <h1 className="h3-bold 2xl:h2-bold uppercase">
           Have a safe and <br /> productive harvest
         </h1>
         <p className="subtle-regular xl:menu-regular text-light-2 w-[100%] xl:w-[80%] mb-8 xl:mb-20">

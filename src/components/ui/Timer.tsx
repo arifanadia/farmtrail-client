@@ -8,8 +8,6 @@ const Timer = ({duration } : TimerProps) => {
   const [time, setTime] = useState(duration);
 
   useEffect(() => {
-    if (time <= 0) return;
-
     const interval = setInterval(() => {
       setTime((prevTime) => {
         if (prevTime <= 1000) {
@@ -21,7 +19,7 @@ const Timer = ({duration } : TimerProps) => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [time]);
+  }, []);
 
   const getFormattedTime = (milliseconds: number) => {
     const totalSeconds = Math.floor(milliseconds / 1000);
@@ -39,22 +37,22 @@ const Timer = ({duration } : TimerProps) => {
   return (
     <div className="flex justify-center space-x-3">
       <div className="">
-        <h3 className="text-28 text-light_green">0{days}</h3>
+        <h3 className="text-28 text-light_green">{String(days).padStart(2, '0')}</h3>
         <p className="text-xs text-[#AFB3AE] ">Days</p>
       </div>
       <span className="text-28 text-light_green"> : </span>
       <div className="">
-        <h3 className="text-28 text-light_green">{hours}</h3>
+        <h3 className="text-28 text-light_green">{String(hours).padStart(2, '0')}</h3>
         <p className="text-xs text-[#AFB3AE] ">Hours</p>
       </div>
       <span className="text-28 text-light_green"> : </span>
       <div className="">
-        <h3 className="text-28 text-light_green">{minutes}</h3>
+        <h3 className="text-28 text-light_green">{String(minutes).padStart(2, '0')}</h3>
         <p className="text-xs text-[#AFB3AE] ">Min</p>
       </div>
       <span className="text-28 text-light_green"> : </span>
       <div className="">
-        <h3 className="text-28 text-light_green">{seconds}</h3>
+        <h3 className="text-28 text-light_green">{String(seconds).padStart(2, '0')}</h3>
         <p className="text-xs text-[#AFB3AE]">Sec</p>
       </div>
 

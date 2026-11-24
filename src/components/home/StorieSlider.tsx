@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, SwiperRef } from 'swiper/react';
 import { EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -10,7 +10,8 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 
 const StorieSlider = () => {
-  const swiperRef = useRef<null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const swiperRef = useRef<SwiperRef | null>(null);
   const stories = [
     { id: 1, title: "Story 1", imageUrl: "/insta/story1.jpg" },
     { id: 2, title: "Story 2", imageUrl: "/insta/story2.jpg" },
@@ -22,7 +23,8 @@ const StorieSlider = () => {
   ];
 
   useEffect(() => {
-    const slides = document.querySelectorAll('.swiper-slide');
+    const slides = containerRef.current?.querySelectorAll('.swiper-slide');
+    if (!slides || slides.length === 0) return;
 
     gsap.fromTo(
       slides,
@@ -32,7 +34,7 @@ const StorieSlider = () => {
   }, []);
 
   return (
-    <div className="swiper-container mt-14">
+    <div ref={containerRef} className="swiper-container mt-14">
       <Swiper
         ref={swiperRef}
         modules={[EffectCoverflow, Navigation]}

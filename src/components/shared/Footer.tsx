@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { blogPosts } from "@/data/blogs";
 import {
   FaFacebookF,
   FaInstagram,
@@ -22,7 +23,7 @@ const Footer = () => {
     "text-white h-6 w-6 hover:text-light_green transition-colors";
 
   return (
-    <footer className="bg-dark-1 text-black dark:text-white py-8 md:py-12">
+    <footer className="bg-dark-1 text-white py-8 md:py-12">
       <section className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6 md:px-12 lg:px-16">
         {/* Logo and description */}
         <div className="col-span-1">
@@ -34,7 +35,7 @@ const Footer = () => {
               height={50}
             />
           </Link>
-          <p className="mt-4 text-sm">
+          <p className="mt-4 text-sm text-light-2">
             Farmtrail is dedicated to promoting sustainable farming practices
             and providing fresh, locally sourced products. Join us in supporting
             local farmers and healthier communities.
@@ -66,8 +67,8 @@ const Footer = () => {
             <Link href="/project" className={linkClasses}>
               <MdKeyboardArrowRight /> Projects
             </Link>
-            <Link href="/service" className={linkClasses}>
-              <MdKeyboardArrowRight /> Service
+            <Link href="/services" className={linkClasses}>
+              <MdKeyboardArrowRight /> Services
             </Link>
             <Link href="/glossary" className={linkClasses}>
               <MdKeyboardArrowRight /> Glossary
@@ -75,44 +76,33 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* News */}
+        {/* Blogs */}
         <div className="col-span-1 lg:-ml-20 2xl:ml-0">
-          <h2 className="h2-medium">News</h2>
+          <h2 className="h2-medium">Blogs</h2>
           <div className="mt-4 flex flex-col space-y-5">
-            <Link href="/news" className="flex gap-4">
-              <Image
-                src="/news1.jpeg"
-                alt="news"
-                height={60}
-                width={80}
-                className="object-cover size-24"
-              />
-              <div>
-                <span className="small-semibold uppercase text-light_green">
-                  October 09, 2024
-                </span>
-                <p className="menu-medium">
-                  Porro ullam ut nesciunt dolor iure eaque asperiores!
-                </p>
-              </div>
-            </Link>
-            <Link href="/news" className="flex gap-4">
-              <Image
-                src="/news1.jpeg"
-                alt="news"
-                height={60}
-                width={80}
-                className="object-cover size-24"
-              />
-              <div>
-                <span className="small-semibold uppercase text-light_green">
-                  October 09, 2024
-                </span>
-                <p className="menu-medium">
-                  Porro ullam ut nesciunt dolor iure eaque asperiores!
-                </p>
-              </div>
-            </Link>
+            {blogPosts.slice(0, 2).map((post) => (
+              <Link
+                key={post.id}
+                href={`/blogs/${post.slug}`}
+                className="flex gap-4 group"
+              >
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  height={60}
+                  width={80}
+                  className="object-cover size-24 shrink-0 rounded"
+                />
+                <div>
+                  <span className="small-semibold uppercase text-light_green">
+                    {post.date}
+                  </span>
+                  <p className="menu-medium group-hover:text-light_green transition-colors line-clamp-2">
+                    {post.title}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -165,14 +155,14 @@ const Footer = () => {
           />
           <Image
             src="/png/stripe.png"
-            alt="Mastercard"
+            alt="Stripe"
             width={40}
             height={24}
            
           />
           <Image
             src="/png/paypal.png"
-            alt="Mastercard"
+            alt="PayPal"
             width={100}
             height={35}
            

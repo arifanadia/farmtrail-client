@@ -1,5 +1,5 @@
 // app/(main)/page.tsx
-export default function loginPage() {
+export default function LoginPage() {
   return (
       <div>
           <h1>Welcome to FarmTrail</h1>

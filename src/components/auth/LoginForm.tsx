@@ -14,15 +14,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { loginSchema } from "@/lib/validation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation"; // Use next/navigation for navigation
 import { loginUser } from "@/lib/store/features/authentication/authSlice";
-import { AppDispatch } from "@/lib/store/store";
+import { AppDispatch, RootState } from "@/lib/store/store";
 import { toast } from "sonner";
 
 const LoginForm = () => {
   const dispatch: AppDispatch = useDispatch();
   const router = useRouter(); // Initialize router for navigation
+  const { loading } = useSelector((state: RootState) => state.auth);
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -39,6 +40,11 @@ const LoginForm = () => {
       toast.success("login successful");
       router.push("/products");
     } else {
+      toast.error(
+        typeof resultAction.payload === "string"
+          ? resultAction.payload
+          : "Login failed. Please check your credentials."
+      );
       console.error(resultAction.error);
     }
   }
@@ -86,9 +92,10 @@ const LoginForm = () => {
           />
           <Button
             type="submit"
+            disabled={loading}
             className="outline-btn-light mt-6 w-full px-6 py-3 base-bold"
           >
-            Sign In
+            {loading ? "Logging in..." : "Sign In"}
           </Button>
         </form>
       </Form>

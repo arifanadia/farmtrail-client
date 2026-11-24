@@ -13,15 +13,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { signUpSchema } from "@/lib/validation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { registerUser } from "@/lib/store/features/authentication/authSlice";
-import { AppDispatch } from "@/lib/store/store";
+import { AppDispatch, RootState } from "@/lib/store/store";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 const RegisterForm = () => {
   const dispatch: AppDispatch = useDispatch();
+  const { loading } = useSelector((state: RootState) => state.auth);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
@@ -46,8 +47,7 @@ const RegisterForm = () => {
  
       // Handle successful registration
     } else if (registerUser.rejected.match(resultAction)) {
-      const errorPayload = resultAction.payload as { errorMessage?: string } | undefined;
-      const errorMessage = errorPayload?.errorMessage || 'An unknown error occurred';
+      const errorMessage = typeof resultAction.payload === 'string' ? resultAction.payload : 'An unknown error occurred';
       setError(errorMessage);
   }
   }
@@ -127,8 +127,12 @@ const RegisterForm = () => {
               </FormItem>
             )}
           />
-          <Button type="submit" className="outline-btn-light mt-6 w-full px-6 py-3 base-bold">
-            Sign Up
+          <Button
+            type="submit"
+            disabled={loading}
+            className="outline-btn-light mt-6 w-full px-6 py-3 base-bold"
+          >
+            {loading ? "Registering..." : "Sign Up"}
           </Button>
         </form>
       </Form>

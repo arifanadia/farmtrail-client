@@ -68,8 +68,9 @@ const Testimonials = () => {
   ];
 
   const visibleSlides = 4;
-  const slideWidth = window.innerWidth < 640 ? 102 : 100 / visibleSlides;
-  const duration = window.innerWidth < 768 ? 0.5 : 0.8;
+  const isClient = typeof window !== 'undefined';
+  const slideWidth = isClient && window.innerWidth < 640 ? 102 : 100 / visibleSlides;
+  const duration = isClient && window.innerWidth < 768 ? 0.5 : 0.8;
   useEffect(() => {
     gsap.set(testimonials.current, { x: 0 });
   }, []);

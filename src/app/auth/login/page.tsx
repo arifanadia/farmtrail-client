@@ -37,7 +37,7 @@ const Login = () => {
     <div className="relative max-h-screen h-screen overflow-hidden">
       <div
         ref={loginContainerRef}
-        className="flex-between items-center max-w-4xl mx-auto my-36 dark:bg-black border-2 border-light-br shadow-lg p-12 shadow-light-br"
+        className="flex-between items-center max-w-4xl mx-auto my-36 bg-black border-2 border-light-br shadow-lg p-12 shadow-light-br"
       >
         <section className="max-w-lg my-auto">
           <div>

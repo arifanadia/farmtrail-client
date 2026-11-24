@@ -1,9 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
   getAuth,
 } from "firebase/auth";
 import app from "../../../firebase/firebase.config";
@@ -11,8 +12,7 @@ import { apiClient } from "@/lib/api-client";
 
 interface User {
   email: string;
-  password: string;
-  username?: string; 
+  username: string;
 }
 
 interface AuthState {
@@ -29,10 +29,23 @@ const initialState: AuthState = {
 
 const auth = getAuth(app);
 
+function getAuthErrorMessage(error: unknown, fallback: string): string {
+  if (axios.isAxiosError(error)) {
+    const serverMessage = (
+      error.response?.data as { message?: string } | undefined
+    )?.message;
+    return serverMessage || error.message || fallback;
+  }
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return fallback;
+}
+
 // Register User
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
-  async (data: User, { rejectWithValue }) => {
+  async (data: { email: string; password: string; username?: string }, { rejectWithValue }) => {
     try {
       const createUser = await createUserWithEmailAndPassword(
         auth,
@@ -40,6 +53,10 @@ export const registerUser = createAsyncThunk(
         data.password
       );
       const user = createUser.user;
+
+      if (data.username) {
+        await updateProfile(user, { displayName: data.username });
+      }
 
       const newUser = {
         email: user.email,
@@ -49,8 +66,8 @@ export const registerUser = createAsyncThunk(
       await apiClient.post("/signup", newUser);
 
       return { email: user.email, username: data.username };
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error: unknown) {
+      return rejectWithValue(getAuthErrorMessage(error, "Registration failed."));
     }
   }
 );
@@ -58,7 +75,7 @@ export const registerUser = createAsyncThunk(
 // Login User
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
-  async (data: User, { rejectWithValue }) => {
+  async (data: { email: string; password: string }, { rejectWithValue }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
@@ -68,8 +85,8 @@ export const loginUser = createAsyncThunk(
       const user = userCredential.user;
 
       return { email: user.email, username: user.displayName || "" }; 
-    } catch (error: any) {
-      return rejectWithValue(error.message);
+    } catch (error: unknown) {
+      return rejectWithValue(getAuthErrorMessage(error, "Login failed."));
     }
   }
 );
@@ -102,7 +119,6 @@ const authSlice = createSlice({
         state.user = {
           email: action.payload.email || "",
           username: action.payload.username || "",
-          password: "", // It's best not to store the password in state
         };
         state.loading = false;
       })
@@ -119,7 +135,6 @@ const authSlice = createSlice({
         state.user = {
           email: action.payload.email || "",
           username: action.payload.username || "",
-          password: "", // Optional: Remove if you don't want it in the state
         };
         state.loading = false;
       })

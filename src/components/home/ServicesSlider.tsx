@@ -1,24 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-
-interface Slide {
-  title: string;
-  img: string;
-}
-
-const slides: Slide[] = [
-  { title: "Farm Services", img: "/Service/farm-service.jpg" },
-  { title: "Agriculture", img: "/Service/agriculture.jpg" },
-  { title: "Food & Beverage", img: "/Service/food.jpg" },
-  { title: "Animal Services", img: "/Service/animal.jpg" },
-  { title: "Education and Training", img: "/Service/Education & Training.jpg" },
-  { title: "Tech & Innovation", img: "/Service/Technology & Innovation.jpg" },
-  { title: "Agri Financial Service", img: "/Service/finacial.jpg" },
-];
+import Link from "next/link";
+import { services } from "@/data/services";
 
 const ServicesSlider = () => {
+  const slidesContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [slideWidth, setSlideWidth] = useState(0); // Dynamic slide width
   const [xPercentage, setXPercentage] = useState(0); // GSAP x percentage
@@ -50,15 +38,16 @@ const ServicesSlider = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % services.length);
     }, 3000); 
 
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
+    if (!slidesContainerRef.current) return;
     // Animate the slides container based on dynamic xPercentage
-    gsap.to(".slides-container", {
+    gsap.to(slidesContainerRef.current, {
       x: `-${currentIndex * xPercentage}%`,
       duration: 0.5,
       ease: "power1.inOut",
@@ -68,20 +57,28 @@ const ServicesSlider = () => {
   return (
     <div className="relative overflow-hidden w-full">
       <div 
+        ref={slidesContainerRef}
         className="slides-container flex gap-4 mt-6"
-        style={{ width: `${slides.length * slideWidth}%` }} // Dynamic width
+        style={{ width: `${services.length * slideWidth}%` }} // Dynamic width
       >
-        {slides.map((slide, index) => (
-          <div key={index} className="flex-shrink-0" style={{ width: `${slideWidth}%` }}>
-            <h2 className="base-medium lg:h3-medium text-white mb-4">{slide.title}</h2>
+        {services.map((service) => (
+          <Link
+            key={service.id}
+            href={`/services/${service.slug}`}
+            className="flex-shrink-0 group"
+            style={{ width: `${slideWidth}%` }}
+          >
+            <h2 className="base-medium lg:h3-medium text-white group-hover:text-light_green transition-colors mb-4">
+              {service.title}
+            </h2>
             <Image
-              src={slide.img}
-              alt={slide.title}
+              src={service.image}
+              alt={service.title}
               width={320}
               height={170}
-              className="object-cover w-full h-40"
+              className="object-cover w-full h-40 rounded transition-transform duration-300 group-hover:scale-[1.02]"
             />
-          </div>
+          </Link>
         ))}
       </div>
     </div>

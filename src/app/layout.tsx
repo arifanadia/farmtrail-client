@@ -5,6 +5,7 @@ import { ThemeProvider } from "./theme-provider";
 import StoreProvider from "./StoreProvider";
 import { Toaster } from "@/components/ui/sonner"
 import AuthListener from "@/lib/store/features/authentication/authlListener";
+import BackToHomeButton from "@/components/shared/BackToHomeButton";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -13,6 +14,7 @@ const dmSans = DM_Sans({
 });
 const openSans = Open_Sans({
   subsets: ["latin"],
+  variable: "--font-open-sans",
 });
 export const metadata: Metadata = {
   icons: ["/png/Farmtrail-logo.png"],
@@ -27,17 +29,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${dmSans.variable} ${openSans.className} antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${dmSans.variable} ${openSans.variable} ${openSans.className} antialiased`}>
         <StoreProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="dark"
+            forcedTheme="dark"
+            enableSystem={false}
             disableTransitionOnChange
           >
             <AuthListener />
             <div>{children}</div>
+            <BackToHomeButton />
             <Toaster />
           </ThemeProvider>
         </StoreProvider>

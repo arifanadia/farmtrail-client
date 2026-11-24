@@ -1,3 +1,5 @@
+"use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -52,9 +54,9 @@ const ContactForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel className="text-light-2">Name</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="Your Name" {...field}  className="w-[300px] h-12"/>
+                    <Input type="text" placeholder="Your Name" {...field} className="w-[300px] h-12 bg-transparent text-white border-light-br placeholder:text-gray-400 focus:border-light_green"/>
                   </FormControl>
                 </FormItem>
               )}
@@ -65,9 +67,9 @@ const ContactForm = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel className="text-light-2">Email</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="Your Email" {...field}  className="w-[300px] h-12"/>
+                    <Input type="email" placeholder="Your Email" {...field} className="w-[300px] h-12 bg-transparent text-white border-light-br placeholder:text-gray-400 focus:border-light_green"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -75,8 +77,23 @@ const ContactForm = () => {
             />
           </div>
 
-          <Textarea 
-          placeholder="Your Message" className="h-40"/>
+          <FormField
+            control={form.control}
+            name="message"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-light-2">Message</FormLabel>
+                <FormControl>
+                  <Textarea
+                    placeholder="Your Message"
+                    {...field}
+                    className="h-40 bg-transparent text-white border-light-br placeholder:text-gray-400 focus:border-light_green"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           <CustomButton title="Submit" type="submit" label="Submit" className="w-full h-14" />
         </form>

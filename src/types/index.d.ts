@@ -1,76 +1,124 @@
-declare module "typewriter-effect/dist/core" {
-  export default class Typewriter {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    constructor(element: HTMLElement, options?: any);
-    typeString(string: string): Typewriter;
-    start(): Typewriter;
-    stop(): Typewriter;
-    pauseFor(duration: number): Typewriter;
-    deleteAll(): Typewriter;
-    deleteChars(count: number): Typewriter;
-    changeDelay(newDelay: number): Typewriter;
-  }
-}
-import * as React from "react";
-
-export interface SliderProps {
-  disabled?: boolean | undefined;
-  format?: ((value: number) => string | number | undefined) | undefined;
-  handleLabel?: string | undefined;
-  labels?: { [value: number]: string } | undefined;
-  max?: number | undefined;
-  min?: number | undefined;
-  onChange?(value: number): void;
-  onChangeComplete?(value: number): void;
-  onChangeStart?(value: number): void;
-  orientation?: string | undefined;
-  reverse?: boolean | undefined;
-  step?: number | undefined;
-  tooltip?: boolean | undefined;
-  className?: string | undefined;
-  value: number;
+export interface GramPrice {
+  _id?: string;
+  weight: string;
+  price: number;
 }
 
-export default class Slider extends React.Component<SliderProps> {}
+export interface SizePrice {
+  size: string;
+  price: number;
+  offerPrice?: number;
+}
 
-declare module "react-rating" {
-  import React from "react";
-
-  interface RatingProps {
-    initialRating?: number;
-    readonly: true;
-    emptySymbol: Element;
-    fullSymbol: Element;
-  }
-
-  const Rating: React.FC<RatingProps>;
-
-  export default Rating;
+export interface ProductReview {
+  _id?: string;
+  username: string;
+  rating: number;
+  comment?: string;
 }
 
 export interface Product {
-  id: number;
+  _id: string;
+  id?: string | number;
+  productId: string;
+  sku: string;
   productName: string;
-  mainPrice: number;
+  mainPrice?: number;
   offerPrice: number;
-  description: string;
-  images: string;
+  overview?: string;
+  aboutProduct?: string;
+  description?: string | Record<string, unknown> | Array<unknown>;
   category: string;
-  gramToPrice: object;
-  createdAt: string;
+  images: string[];
+  gramToPrice?: GramPrice[];
+  priceBySize?: SizePrice[];
+  reviews?: ProductReview[];
+  tags?: string[];
+  packageVariety?: string[];
+  quantity?: number;
+  additionalInfo?: Record<string, unknown>;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ProductsState {
   products: Product[];
+  totalProducts: number;
+  totalPages: number;
+  currentPage: number;
+  limit: number;
   loading: boolean;
   error: string | null;
-  totalProducts?: number;
-  currentPage?: number ;
-  page?: number;
-  limit?: number;
-  sort?: string;
-  order?: string;
-  search?: string;
-  priceRange?: string ;
-  category?: string;
+  categories: string[];
+  categoryCounts: Record<string, number>;
+  minPrice: number;
+  maxPrice: number;
+  featuredProducts: Product[];
+  // Active Filter state
+  searchQuery: string;
+  selectedCategory: string;
+  priceRange: [number, number];
+  sort: string;
+  order: string;
+  inStockOnly: boolean;
+  viewMode: "grid" | "list";
+}
+
+export interface CartItem {
+  productId: string;
+  _id: string;
+  productName: string;
+  price: number;
+  mainPrice?: number;
+  image: string;
+  quantity: number;
+  selectedVariant?: string;
+  variant?: string;
+}
+
+export interface CartState {
+  items: CartItem[];
+  totalAmount: number;
+  totalQuantity: number;
+}
+
+export interface OrderCustomer {
+  fullName: string;
+  email: string;
+  phone: string;
+}
+
+export interface OrderShippingAddress {
+  street: string;
+  city: string;
+  state?: string;
+  postalCode: string;
+  country?: string;
+  notes?: string;
+}
+
+export interface OrderPaymentDetails {
+  cardholderName?: string;
+  last4?: string;
+  cardBrand?: string;
+  transactionId?: string;
+}
+
+export interface Order {
+  _id?: string;
+  orderId: string;
+  customer: OrderCustomer;
+  shippingAddress: OrderShippingAddress;
+  items: CartItem[];
+  subtotal: number;
+  shippingFee: number;
+  tax: number;
+  discount: number;
+  totalAmount: number;
+  paymentMethod: "visa" | "mastercard" | "cash_on_delivery";
+  paymentStatus: "paid" | "pending" | "failed";
+  orderStatus: "confirmed" | "processing" | "shipped" | "delivered" | "cancelled";
+  paymentDetails?: OrderPaymentDetails;
+  createdAt?: string;
+  updatedAt?: string;
 }
